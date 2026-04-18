@@ -1,0 +1,117 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Página-1" id="JT216SaXS-VBJMYnNF85">
+    <mxGraphModel dx="1426" dy="2052" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="raiNoo9noGkoDfCdOynC-1" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Sistema (UC 3)" vertex="1">
+          <mxGeometry height="1053" width="35" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-2" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Sistema" vertex="1">
+          <mxGeometry height="1053" width="150" x="329" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-3" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Ficheiros (.txt/.csv)" vertex="1">
+          <mxGeometry height="1053" width="150" x="754" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-4" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Cliente" vertex="1">
+          <mxGeometry height="1053" width="35" x="954" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-5" parent="1" style="shape=umlFrame;dashed=1;pointerEvents=0;dropTarget=0;strokeColor=#B3B3B3;height=20;width=30;fillColor=light-dark(#eeeeee,#1f2020);fontColor=light-dark(#333333,#cccccc);" value="alt" vertex="1">
+          <mxGeometry height="431" width="786" x="255" y="537" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-6" parent="raiNoo9noGkoDfCdOynC-5" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;" value="[Erro na Gravação de Ficheiro]" vertex="1">
+          <mxGeometry height="20" width="756" x="30" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-7" parent="raiNoo9noGkoDfCdOynC-5" style="shape=line;dashed=1;whiteSpace=wrap;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;align=center;strokeColor=#B3B3B3;" value="[Gravação com Sucesso]" vertex="1">
+          <mxGeometry height="4" width="786" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-8" parent="1" style="shape=umlFrame;dashed=1;pointerEvents=0;dropTarget=0;strokeColor=#B3B3B3;height=20;width=30;fillColor=light-dark(#eeeeee,#1f2020);fontColor=light-dark(#333333,#cccccc);" value="alt" vertex="1">
+          <mxGeometry height="749" width="828" x="222" y="229" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-9" parent="raiNoo9noGkoDfCdOynC-8" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;" value="[Abortar Operação (Falha na Integridade)]" vertex="1">
+          <mxGeometry height="20" width="798" x="30" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-10" parent="raiNoo9noGkoDfCdOynC-8" style="shape=line;dashed=1;whiteSpace=wrap;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;align=center;strokeColor=#B3B3B3;" value="[Integridade Válida]" vertex="1">
+          <mxGeometry height="4" width="828" y="133" as="geometry" />
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-11" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="raiNoo9noGkoDfCdOynC-2" value="Inicia processo de fecho de venda">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="258" y="127" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-12" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-2" style="curved=1;endArrow=block;rounded=0;" target="raiNoo9noGkoDfCdOynC-2" value="1. Calcula o valor total">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="455" y="179" />
+              <mxPoint x="455" y="209" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-13" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-2" style="curved=1;endArrow=block;rounded=0;" target="raiNoo9noGkoDfCdOynC-2" value="Cancela o processo e regressa ao estado anterior">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="455" y="307" />
+              <mxPoint x="455" y="337" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-14" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-2" style="curved=1;endArrow=block;rounded=0;" target="raiNoo9noGkoDfCdOynC-2" value="2. Gera o registo da venda com a data atual">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="455" y="435" />
+              <mxPoint x="455" y="465" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-15" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="raiNoo9noGkoDfCdOynC-3" value="3. Escreve a informação no ficheiro de persistência">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="625" y="517" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-16" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-3" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="raiNoo9noGkoDfCdOynC-2" value="Falha na gravação">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="628" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-17" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-2" style="curved=1;endArrow=block;rounded=0;" target="raiNoo9noGkoDfCdOynC-2" value="Invoca UC: Notificar Erro de Persistência">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="455" y="716" />
+              <mxPoint x="455" y="746" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-18" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="raiNoo9noGkoDfCdOynC-4" value="Informa que a venda não pôde ser registada">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="725" y="798" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-19" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-3" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="raiNoo9noGkoDfCdOynC-2" value="Gravação confirmada">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="628" y="896" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-20" edge="1" parent="1" source="raiNoo9noGkoDfCdOynC-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="raiNoo9noGkoDfCdOynC-4" value="4. Confirma a conclusão ao utilizador">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="725" y="948" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="raiNoo9noGkoDfCdOynC-21" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;fontColor=light-dark(#333333,#cccccc);" value="&lt;&lt;extend&gt;&gt; UC: Notificar Erro de Persistência" vertex="1">
+          <mxGeometry height="49" width="347" x="429" y="635" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

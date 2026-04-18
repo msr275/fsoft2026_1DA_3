@@ -1,0 +1,68 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Página-1" id="ik8bD7sBocTpnBNgBS4h">
+    <mxGraphModel dx="1426" dy="883" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-1" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Utilizador" vertex="1">
+          <mxGeometry height="604" width="35" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-2" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Sistema" vertex="1">
+          <mxGeometry height="604" width="150" x="539" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-3" parent="1" style="shape=umlFrame;dashed=1;pointerEvents=0;dropTarget=0;strokeColor=#B3B3B3;height=20;width=30;fillColor=light-dark(#eeeeee,#1f2020);fontColor=light-dark(#333333,#cccccc);" value="alt" vertex="1">
+          <mxGeometry height="196" width="541" x="84" y="333" as="geometry" />
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-4" parent="NL-yWs014Zt2Zud0lgoq-3" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;" value="[Resultados Encontrados]" vertex="1">
+          <mxGeometry height="20" width="511" x="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-5" parent="NL-yWs014Zt2Zud0lgoq-3" style="shape=line;dashed=1;whiteSpace=wrap;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;align=center;strokeColor=#B3B3B3;" value="[Item não encontrado]" vertex="1">
+          <mxGeometry height="4" width="541" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-6" edge="1" parent="1" source="NL-yWs014Zt2Zud0lgoq-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="NL-yWs014Zt2Zud0lgoq-2" value="1. Escolhe o critério de pesquisa">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="363" y="127" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-7" edge="1" parent="1" source="NL-yWs014Zt2Zud0lgoq-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="NL-yWs014Zt2Zud0lgoq-1" value="Pede o termo de busca">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="366" y="179" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-8" edge="1" parent="1" source="NL-yWs014Zt2Zud0lgoq-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="NL-yWs014Zt2Zud0lgoq-2" value="2. Introduz o termo de busca">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="363" y="231" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-9" edge="1" parent="1" source="NL-yWs014Zt2Zud0lgoq-2" style="curved=1;endArrow=block;rounded=0;" target="NL-yWs014Zt2Zud0lgoq-2" value="3. Percorre a base de dados em ficheiro">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="665" y="283" />
+              <mxPoint x="665" y="313" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-10" edge="1" parent="1" source="NL-yWs014Zt2Zud0lgoq-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="NL-yWs014Zt2Zud0lgoq-1" value="4a. Apresenta todos os resultados correspondentes">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="366" y="411" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NL-yWs014Zt2Zud0lgoq-11" edge="1" parent="1" source="NL-yWs014Zt2Zud0lgoq-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="NL-yWs014Zt2Zud0lgoq-1" value="4b. Informa que não existem resultados e sugere nova pesquisa">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="366" y="509" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

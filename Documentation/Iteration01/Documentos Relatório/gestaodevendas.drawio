@@ -1,0 +1,86 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Página-1" id="8mpd2m1-fi8DhQyvAS0Z">
+    <mxGraphModel dx="1426" dy="883" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-1" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Cliente" vertex="1">
+          <mxGeometry height="790" width="35" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-2" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Sistema" vertex="1">
+          <mxGeometry height="790" width="150" x="491" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-3" parent="1" style="shape=umlFrame;dashed=1;pointerEvents=0;dropTarget=0;strokeColor=#B3B3B3;height=20;width=30;fillColor=light-dark(#eeeeee,#1f2020);fontColor=light-dark(#333333,#cccccc);" value="opt" vertex="1">
+          <mxGeometry height="281" width="772" x="84" y="251" as="geometry" />
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-4" parent="NOBlc8XVM9rS8RIqPpRu-3" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;" value="[Remover Artigo]" vertex="1">
+          <mxGeometry height="20" width="742" x="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-5" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="NOBlc8XVM9rS8RIqPpRu-2" value="1. Consulta o catálogo e seleciona os álbuns pretendidos">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="339" y="127" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-6" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="NOBlc8XVM9rS8RIqPpRu-2" value="2. Adiciona os itens ao carrinho virtual">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="339" y="179" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-7" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="NOBlc8XVM9rS8RIqPpRu-1" value="Atualiza o estado do carrinho">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="342" y="231" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-8" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="NOBlc8XVM9rS8RIqPpRu-2" value="3a. Opta por remover itens">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="339" y="378" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-9" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-2" style="curved=1;endArrow=block;rounded=0;" target="NOBlc8XVM9rS8RIqPpRu-2" value="Invoca UC: Remover Artigo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="617" y="430" />
+              <mxPoint x="617" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-10" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-2" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="NOBlc8XVM9rS8RIqPpRu-1" value="3b. Atualiza o total temporário">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="342" y="512" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-11" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="NOBlc8XVM9rS8RIqPpRu-2" value="4. Solicita a finalização da compra">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="339" y="574" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-12" edge="1" parent="1" source="NOBlc8XVM9rS8RIqPpRu-2" style="curved=1;endArrow=block;rounded=0;" target="NOBlc8XVM9rS8RIqPpRu-2" value="5. Disponibiliza ponto de extensão">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="617" y="675" />
+              <mxPoint x="617" y="705" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-13" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;fontColor=light-dark(#333333,#cccccc);" value="&lt;&lt;extend&gt;&gt; UC: Remover Artigo" vertex="1">
+          <mxGeometry height="49" width="255" x="591" y="297" as="geometry" />
+        </mxCell>
+        <mxCell id="NOBlc8XVM9rS8RIqPpRu-14" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;fontColor=light-dark(#333333,#cccccc);" value="&lt;&lt;extend&gt;&gt; UC: Finalizar uma Transação" vertex="1">
+          <mxGeometry height="49" width="312" x="591" y="594" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
