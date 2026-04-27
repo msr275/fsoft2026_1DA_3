@@ -4,8 +4,9 @@
 
 void displayHeader()
 {
-    std::cout <<"Music Store of Group 3"<< std::endl;
-
+    std::cout <<"------------------------"<< std::endl;
+    std::cout <<"|Music Store of Group 3|"<< std::endl;
+    std::cout <<"------------------------\n"<< std::endl;
 }
 
 int main()
