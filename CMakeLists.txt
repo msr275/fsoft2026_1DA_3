@@ -4,4 +4,6 @@ project(fsoft2026_1DA_3)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(fsoft2026_1DA_3
-        Project/main.cpp)
+        Project/main.cpp
+        Project/Utils.cpp
+        Project/Utils.h)
