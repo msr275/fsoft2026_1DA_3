@@ -1,4 +1,4 @@
-#include "../headers/Utils.h"
+#include "Utils.h"
 #include <iostream>
 #include <limits>
 
@@ -13,9 +13,9 @@ int getSafeInt(std::string prompt) {
     while (true) {
         std::cout << prompt;
         if (std::cin >> value) {
-            return value; // Sucesso: devolve o número
+            return value;
         } else {
-            // Falha: utilizador inseriu letras ou símbolos
+
             std::cout << "Invalid input! Please enter a number." << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
