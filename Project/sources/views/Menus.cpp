@@ -28,14 +28,14 @@ void showCustomerMenu() {
         displayHeader();
         std::cout << "1. Browse Catalog" << std::endl;
         std::cout << "2. My Shopping Cart" << std::endl;
-        std::cout << "0. Exit" << std::endl;
+        std::cout << "0. Back to the Main Menu" << std::endl;
 
         choice = getSafeInt("\nYour Choice: ");
 
         switch (choice) {
             case 1: std::cout << "Opening Catalog." << std::endl; break;
             case 2: std::cout << "Opening Cart." << std::endl; break;
-            case 0: std::cout << "See ya next time!" << std::endl; break;
+            case 0: std::cout << "Returning to the main menu." << std::endl; break;
             default: std::cout << "That option does not exist." << std::endl; break;
         }
     }
