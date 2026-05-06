@@ -6,18 +6,20 @@
 void showAdminMenu() {
     int choice = -1;
     while (choice != 0) {
-        std::cout << "\n--- ADMIN MANAGEMENT ---" << std::endl;
+        displayHeader();
+        std::cout << "--- ADMIN MANAGEMENT ---" << std::endl;
         std::cout << "1. Manage Artists (CRUD)" << std::endl;
         std::cout << "2. Manage Albums (CRUD)" << std::endl;
         std::cout << "0. Back" << std::endl;
 
-        choice = getSafeInt("Admin Choice: ");
+
+        choice = getSafeInt("Admin Choice: ", 0, 2);
 
         switch (choice) {
-            case 1: std::cout << "Feature coming soon...\n"; break;
-            case 2: std::cout << "Feature coming soon...\n"; break;
+            case 1: std::cout << "Feature coming soon...\n"; pressEnterToContinue(); break;
+            case 2: std::cout << "Feature coming soon...\n"; pressEnterToContinue(); break;
             case 0: break;
-            default: std::cout << "Invalid option.\n"; break;
+            default: break;
         }
     }
 }
@@ -30,13 +32,16 @@ void showCustomerMenu() {
         std::cout << "2. My Shopping Cart" << std::endl;
         std::cout << "0. Back to the Main Menu" << std::endl;
 
-        choice = getSafeInt("\nYour Choice: ");
+        // Limites: 0 a 2
+        choice = getSafeInt("\nYour Choice: ", 0, 2);
 
         switch (choice) {
-            case 1: std::cout << "Opening Catalog." << std::endl; break;
-            case 2: std::cout << "Opening Cart." << std::endl; break;
-            case 0: std::cout << "Returning to the main menu." << std::endl; break;
-            default: std::cout << "That option does not exist." << std::endl; break;
+            case 1: std::cout << "Opening Catalog." << std::endl; pressEnterToContinue(); break;
+            case 2: std::cout << "Opening Cart." << std::endl; pressEnterToContinue(); break;
+            case 0:
+                std::cout << "Returning to the main menu." << std::endl;
+                pressEnterToContinue();
+                break;
         }
     }
 }
@@ -49,7 +54,8 @@ void runMainMenu() {
         std::cout << "2. Admin Login" << std::endl;
         std::cout << "0. Exit" << std::endl;
 
-        choice = getSafeInt("\nYour Choice: ");
+
+        choice = getSafeInt("\nYour Choice: ", 0, 2);
 
         if (choice == 1) {
             showCustomerMenu();
@@ -66,10 +72,9 @@ void runMainMenu() {
                 showAdminMenu();
             } catch (const InvalidDataException& e) {
                 std::cout << "\n[SECURITY ALERT] " << e.what() << std::endl;
+                pressEnterToContinue();
             }
         }
-        else if (choice == 0) {
-            std::cout << "See ya later! Closing...\n" << std::endl;
-        }
     }
+    std::cout << "\nShutting down the system. Keep rocking!" << std::endl;
 }

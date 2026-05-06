@@ -3,6 +3,7 @@
 #include <string>
 
 void displayHeader();
-int getSafeInt(std::string prompt);
+int getSafeInt(std::string prompt, int min, int max);
+void pressEnterToContinue();
 
 #endif //FSOFT2026_1DA_3_UTILS_H

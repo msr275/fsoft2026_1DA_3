@@ -22,3 +22,21 @@ int getSafeInt(std::string prompt) {
         }
     }
 }
+
+void pressEnterToContinue() {
+    std::cout << "\nPress ENTER to continue...";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
+}
+
+
+int getSafeInt(std::string prompt, int min, int max) {
+    int value;
+    while (true) {
+        value = getSafeInt(prompt);
+        if (value >= min && value <= max) {
+            return value;
+        }
+        std::cout << "[ERROR] Invalid choice. Range: " << min << " - " << max << std::endl;
+    }
+}
