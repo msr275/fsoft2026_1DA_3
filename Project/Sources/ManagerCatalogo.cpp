@@ -43,11 +43,28 @@ public:
         }
     }
 
-    bool removerArtista(int idparaapagar) {
-        bool ArtistaEncontrado = false;
-
-        for (int z=0; z<listaArtistas.size();z++) {
-
+    bool removerAlbum(int idParaApagar) {
+        for (int i = 0; i < listaAlbuns.size(); i++) {
+            if (listaAlbuns[i].id_album() == idParaApagar) {
+                listaAlbuns.erase(listaAlbuns.begin() + i);
+                return true;
+            }
         }
+        return false;
+    }
+
+    bool removerArtista(int idParaApagar) {
+        for (int i = listaAlbuns.size()-1;i>=0; i--) {
+            if (listaAlbuns[i].id_artista() == idParaApagar) {
+                listaAlbuns.erase(listaAlbuns.begin()+i);
+            }
+        }
+        for (int i=0;i<listaArtistas.size();i++) {
+            if (listaArtistas[i].get_id_artista() == idParaApagar) {
+                listaArtistas.erase(listaArtistas.begin()+i);
+                return true;
+            }
+        }
+        return false;
     }
 };

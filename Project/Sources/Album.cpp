@@ -1,6 +1,5 @@
 #include <string>
 #include <stdexcept>
-#include "ManagerCatalogo.h"
 
 class Album {
 private:

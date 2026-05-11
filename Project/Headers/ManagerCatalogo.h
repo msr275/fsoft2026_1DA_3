@@ -18,6 +18,9 @@ public:
     //adiciona aos vetores respetivos
     void adicionarArtista(const std :: string& nome,const std :: string& pais,const std :: string& genero);
     void adicionarAlbum(const Album &b);
+
+    bool removerAlbum(int idParaApagar);
+    bool removerArtista(int idParaApagar);
 };
 
 #endif //FSOFT2026_1DA_3_MANAGERCATALOGO_H
