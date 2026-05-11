@@ -1,7 +1,6 @@
 #include <string>
-#include <vector>
-#include <iostream>
 #include <stdexcept>
+#include "ManagerCatalogo.h"
 
 class Album {
 private:

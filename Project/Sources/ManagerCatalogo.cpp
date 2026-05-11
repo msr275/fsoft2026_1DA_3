@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <stdexcept>
+#include "Artista.h"
+#include "Album.h"
 
 class ManagerCatalogo {
 private:
@@ -38,6 +40,14 @@ public:
         } else {
             //erro se não houver artista associado ao álbum
             throw std::invalid_argument("Erro: Álbum sem artista associado.");
+        }
+    }
+
+    bool removerArtista(int idparaapagar) {
+        bool ArtistaEncontrado = false;
+
+        for (int z=0; z<listaArtistas.size();z++) {
+
         }
     }
 };

@@ -1,5 +1,7 @@
 #ifndef FSOFT2026_1DA_3_ALBUM_H
 #define FSOFT2026_1DA_3_ALBUM_H
+#include <string>
+
 
 class Album {
 private:

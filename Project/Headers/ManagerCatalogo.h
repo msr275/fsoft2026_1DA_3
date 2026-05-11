@@ -1,5 +1,9 @@
 #ifndef FSOFT2026_1DA_3_MANAGERCATALOGO_H
 #define FSOFT2026_1DA_3_MANAGERCATALOGO_H
+#include "Artista.h"
+#include "Album.h"
+#include <vector>
+
 
 class ManagerCatalogo {
 private:

@@ -1,6 +1,4 @@
 #include <string>
-#include <vector>
-#include <iostream>
 #include <stdexcept>
 
 class Artista {

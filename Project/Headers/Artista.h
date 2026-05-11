@@ -1,6 +1,5 @@
 #ifndef FSOFT2026_1DA_3_ARTISTA_H
 #define FSOFT2026_1DA_3_ARTISTA_H
-
 #include <string>
 
 class Artista {
