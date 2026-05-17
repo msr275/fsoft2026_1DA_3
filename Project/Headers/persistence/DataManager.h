@@ -2,7 +2,7 @@
 #define DATAMANAGER_H
 
 #include <string>
-#include "ManagerCatalogo.h"
+#include "../controllers/ManagerCatalogo.h"
 
 class DataManager {
 private:

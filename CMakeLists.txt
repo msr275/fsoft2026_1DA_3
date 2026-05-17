@@ -9,34 +9,34 @@ include_directories(Project/Headers)
 add_executable(fsoft2026_1DA_3
         Project/main.cpp
 
-        Project/Headers/DataManager.h
-        Project/Sources/DataManager.cpp
+        Project/Headers/persistence/DataManager.h
+        Project/Sources/persistence/DataManager.cpp
 
-        Project/Headers/Album.h
-        Project/Sources/Album.cpp
+        Project/Headers/models/Album.h
+        Project/Sources/models/Album.cpp
 
-        Project/Headers/Artista.h
-        Project/Sources/Artista.cpp
+        Project/Headers/models/Artista.h
+        Project/Sources/models/Artista.cpp
 
-        Project/Headers/ManagerCatalogo.h
-        Project/Sources/ManagerCatalogo.cpp
+        Project/Headers/controllers/ManagerCatalogo.h
+        Project/Sources/controllers/ManagerCatalogo.cpp
 
-        Project/Headers/Carrinho.h
-        Project/Sources/Carrinho.cpp
+        Project/Headers/models/Carrinho.h
+        Project/Sources/models/Carrinho.cpp
 
-        Project/Headers/Menus.h
-        Project/Sources/Menus.cpp
+        Project/Headers/views/Menus.h
+        Project/Sources/views/Menus.cpp
 
-        Project/Headers/Utils.h
-        Project/Sources/Utils.cpp
+        Project/Headers/views/Utils.h
+        Project/Sources/models/Utils.cpp
 
-        Project/Headers/Rating.h
-        Project/Sources/Rating.cpp
+        Project/Headers/models/Rating.h
+        Project/Sources/models/Rating.cpp
 
-        Project/Headers/Venda.h
+        Project/Headers/models/Venda.h
 
-        Project/Headers/InvalidDataException.h
-        Project/sources/InvalidDataException.cpp
+        Project/Headers/exceptions/InvalidDataException.h
+        Project/Sources/exceptions/InvalidDataException.cpp
 )
 
 target_include_directories(fsoft2026_1DA_3 PUBLIC Project/Headers)

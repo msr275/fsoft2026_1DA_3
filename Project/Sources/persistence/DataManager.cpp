@@ -1,6 +1,6 @@
-#include "DataManager.h"
-#include "Artista.h"
-#include "Album.h"
+#include "../../Headers/persistence/DataManager.h"
+#include "../../Headers/models/Artista.h"
+#include "../../Headers/models/Album.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>

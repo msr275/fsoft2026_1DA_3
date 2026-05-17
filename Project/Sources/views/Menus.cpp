@@ -1,10 +1,10 @@
-#include "Menus.h"
-#include "Utils.h"
-#include "InvalidDataException.h"
-#include "ManagerCatalogo.h"
-#include "Album.h"
-#include "Carrinho.h"
-#include "DataManager.h"
+#include "../../Headers/views/Menus.h"
+#include "../../Headers/views/Utils.h"
+#include "../../Headers/exceptions/InvalidDataException.h"
+#include "../../Headers/controllers/ManagerCatalogo.h"
+#include "../../Headers/models/Album.h"
+#include "../../Headers/models/Carrinho.h"
+#include "../../Headers/persistence/DataManager.h"
 #include <iostream>
 #include <vector>
 

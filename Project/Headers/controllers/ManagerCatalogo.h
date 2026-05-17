@@ -1,8 +1,8 @@
 #ifndef FSOFT2026_1DA_3_MANAGERCATALOGO_H
 #define FSOFT2026_1DA_3_MANAGERCATALOGO_H
 
-#include "Artista.h"
-#include "Album.h"
+#include "../models/Artista.h"
+#include "../models/Album.h"
 #include <vector>
 #include <string>
 
