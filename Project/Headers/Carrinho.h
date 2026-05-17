@@ -8,11 +8,11 @@
 #include <vector>
 #include "Album.h"
 
-class carrinho {
+class Carrinho {
 private:
     std::vector<Album*> itens;
 public:
-    carrinho();
+    Carrinho();
     void adicionarAlbum(Album* album);
     bool removerAlbum(int idAlbum);
     float calcularTotal() const;

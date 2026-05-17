@@ -2,7 +2,7 @@
 // Created by Guilherme Martins on 27/04/2026.
 //
 
-#include "carrinho.h"
+#include "Carrinho.h"
 carrinho::carrinho() {}
 void carrinho::adicionarAlbum(Album* album) {
     if (album != nullptr) {

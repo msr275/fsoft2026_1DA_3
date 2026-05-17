@@ -1,4 +1,4 @@
-#include "Rating.h"
+#include "../Rating.h"
 
 int Rating::contadorIds = 1;
 
