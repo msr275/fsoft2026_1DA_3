@@ -136,6 +136,4 @@ public:
         }
         return resultados;
     }
-
-    //FALTA PESQUISA COM TODOS CRITÉRIOS AO MSM TEMPO
 };
