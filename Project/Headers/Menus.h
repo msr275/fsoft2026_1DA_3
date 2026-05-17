@@ -12,5 +12,7 @@ void perguntarEAdicionarAoCarrinho(const std::vector<Album>& albunsAtuais, Manag
 void showAdminMenu(ManagerCatalogo& catalogo);
 void showCustomerMenu(ManagerCatalogo& catalogo);
 void runMainMenu();
+void ecrãVenda(Carrinho& carrinho);
+void ecrãRating(ManagerCatalogo& catalogo);
 
 #endif

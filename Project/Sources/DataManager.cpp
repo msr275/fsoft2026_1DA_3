@@ -14,14 +14,13 @@ DataManager::DataManager(const std::string& dataDir) : m_dataDir(dataDir) {
 
 void DataManager::assegurarDiretorio() {
     if (mkdir(m_dataDir.c_str(), 0777) == 0 || errno == EEXIST) {
-        // Diretorio garantido com sucesso
     } else {
         std::cerr << "[ERRO] Nao foi possivel criar o diretorio: " << m_dataDir << std::endl;
     }
 }
 
 bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
-    // 1. Carregar Artistas
+    // Carregar Artistas
     std::ifstream fileArtistas(m_artistasFile);
     if (fileArtistas.is_open()) {
         std::string linha;
@@ -41,7 +40,7 @@ bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
         fileArtistas.close();
     }
 
-    // 2. Carregar Álbuns
+    // Carregar Álbuns
     std::ifstream fileAlbuns(m_albunsFile);
     if (fileAlbuns.is_open()) {
         std::string linha;
@@ -61,7 +60,6 @@ bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
                 int ano = std::stoi(anoStr);
                 float preco = std::stof(precoStr);
 
-                // Usa o teu metodo oficial do catalogo
                 catalogo.adicionarAlbum(titulo, idArtista, ano, preco, formato);
             }
         }
@@ -79,7 +77,7 @@ bool DataManager::guardarDados(const ManagerCatalogo& catalogo) {
 
     const auto& artistas = catalogo.obterArtistas();
     for (size_t i = 0; i < artistas.size(); ++i) {
-        // Usa os getters exatos do teu Artista.h
+        // Usa os getters
         fileArtistas << artistas[i].get_id_artista() << ";"
                      << artistas[i].get_nome() << ";"
                      << artistas[i].get_pais() << ";"
@@ -93,7 +91,6 @@ bool DataManager::guardarDados(const ManagerCatalogo& catalogo) {
 
     const auto& albuns = catalogo.obterAlbuns();
     for (size_t i = 0; i < albuns.size(); ++i) {
-        // Usa os getters exatos do teu Album.h
         fileAlbuns << albuns[i].id_album() << ";"
                    << albuns[i].id_artista() << ";"
                    << albuns[i].titulo1() << ";"

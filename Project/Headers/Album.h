@@ -10,16 +10,18 @@ private:
     int ano;
     float preco;
     std::string formato;
+    float rating;
 
 public:
     //construtor
-    Album(int idAlbum, int idArtista, const std::string& titulo, int ano, float preco, const std::string& formato) {
+    Album(int idAlbum, int idArtista, const std::string& titulo, int ano, float preco, const std::string& formato,float novoRating = 0.0f) {
         this->idAlbum = idAlbum;
         this->idArtista = idArtista;
         this->titulo = titulo;
         this->ano = ano;
         this->preco = preco;
         this->formato = formato;
+        this->rating = novoRating;
     }
 
     // Getters
@@ -29,6 +31,8 @@ public:
     int ano1() const { return ano; }
     float preco1() const { return preco; }
     std::string formato1() const { return formato; }
+    float rating1() const { return rating; }
+
 
     // Setters
     void set_id_album(int id_album) { idAlbum = id_album; }
@@ -36,6 +40,7 @@ public:
     void set_titulo(const std::string &titulo) { this->titulo = titulo; }
     void set_ano(int ano) { this->ano = ano; }
     void set_preco(float preco) { this->preco = preco; }
+    void set_rating(float novoRating) { rating = novoRating; }
 };
 
 #endif//FSOFT2026_1DA_3_ALBUM_H
