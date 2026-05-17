@@ -1,3 +1,8 @@
-//
-// Created by Rodrigo Maria Ralha Sousa Santos on 11/05/2026.
-//
+#include "DataManager.h"
+
+int main() {
+    DataManager dm;
+    dm.load();
+    dm.save();
+    return 0;
+}
