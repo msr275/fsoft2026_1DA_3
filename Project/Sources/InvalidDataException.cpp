@@ -1,4 +1,4 @@
-#include "../../headers/InvalidDataException.h"
+#include "../Headers/InvalidDataException.h"
 
 InvalidDataException::InvalidDataException(const std::string& msg) : message(msg) {}
 

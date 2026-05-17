@@ -1,8 +1,6 @@
-#include "DataManager.h"
+#include "Menus.h"
 
 int main() {
-    DataManager dm;
-    dm.load();
-    dm.save();
+    runMainMenu();
     return 0;
 }

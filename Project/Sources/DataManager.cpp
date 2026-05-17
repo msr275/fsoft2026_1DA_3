@@ -1,250 +1,107 @@
 #include "DataManager.h"
-
-#include <sys/stat.h>  // para verificar e criar pastas
+#include "Artista.h"
+#include "Album.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <sys/stat.h>
 #include <cerrno>
-#include <cstring>
 
-// ─── Construtor ───────────────────────────────────────────────────────────────
+DataManager::DataManager(const std::string& dataDir) : m_dataDir(dataDir) {
+    m_artistasFile = m_dataDir + "/artistas.csv";
+    m_albunsFile = m_dataDir + "/albuns.csv";
+}
 
-DataManager::DataManager(const std::string& dataDir)
-    : m_dataDir(dataDir)
-{
-    // Garante que a pasta /data existe logo na construção do objeto.
-    if (!ensureDataDirectory()) {
-        std::cerr << "[DataManager] Aviso: nao foi possivel criar a pasta '"
-                  << m_dataDir << "'.\n";
+void DataManager::assegurarDiretorio() {
+    if (mkdir(m_dataDir.c_str(), 0777) == 0 || errno == EEXIST) {
+        // Diretorio garantido com sucesso
+    } else {
+        std::cerr << "[ERRO] Nao foi possivel criar o diretorio: " << m_dataDir << std::endl;
     }
 }
 
-// ─── Interface pública principal ──────────────────────────────────────────────
+bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
+    // 1. Carregar Artistas
+    std::ifstream fileArtistas(m_artistasFile);
+    if (fileArtistas.is_open()) {
+        std::string linha;
+        while (std::getline(fileArtistas, linha)) {
+            if (linha.empty()) continue;
+            std::stringstream ss(linha);
+            std::string idStr, nome, pais, genero;
 
-bool DataManager::load() {
-    std::cout << "[DataManager] A carregar dados de '" << m_dataDir << "'...\n";
+            if (std::getline(ss, idStr, ';') &&
+                std::getline(ss, nome, ';') &&
+                std::getline(ss, pais, ';') &&
+                std::getline(ss, genero, ';')) {
 
-    bool ok = true;
-    ok &= loadArtists();
-    ok &= loadAlbums();
-    ok &= loadTracks();
-    ok &= loadSales();
-
-    if (ok)
-        std::cout << "[DataManager] Dados carregados com sucesso.\n";
-    else
-        std::cerr << "[DataManager] Alguns ficheiros nao puderam ser lidos.\n";
-
-    return ok;
-}
-
-bool DataManager::save() {
-    std::cout << "[DataManager] A guardar dados em '" << m_dataDir << "'...\n";
-
-    bool ok = true;
-    ok &= saveArtists();
-    ok &= saveAlbums();
-    ok &= saveTracks();
-    ok &= saveSales();
-
-    if (ok)
-        std::cout << "[DataManager] Dados guardados com sucesso.\n";
-    else
-        std::cerr << "[DataManager] Erro ao guardar um ou mais ficheiros.\n";
-
-    return ok;
-}
-
-// ─── Utilitários de ficheiro ──────────────────────────────────────────────────
-
-bool DataManager::fileExists(const std::string& path) {
-    struct stat buffer{};
-    return (stat(path.c_str(), &buffer) == 0);
-}
-
-bool DataManager::ensureDataDirectory() const {
-    if (mkdir(m_dataDir.c_str()) == 0 || errno == EEXIST)
-        return true;
-
-    std::cerr << "[DataManager] Erro ao criar pasta '" << m_dataDir << "': "
-              << strerror(errno) << "\n";
-    return false;
-}
-
-std::vector<std::string> DataManager::readLines(const std::string& filename) const {
-    const std::string path = buildPath(filename);
-    std::vector<std::string> lines;
-
-    std::ifstream file(path);
-    if (!file.is_open()) {
-        // Se o ficheiro ainda não existe (primeira execução), não é um erro fatal.
-        if (!fileExists(path)) {
-            std::cout << "[DataManager] Ficheiro '" << path
-                      << "' nao encontrado — sera criado no proximo save().\n";
-            return lines;   // devolve vetor vazio
+                catalogo.adicionarArtista(nome, pais, genero);
+            }
         }
-        throw std::runtime_error("[DataManager] Nao foi possivel abrir: " + path);
+        fileArtistas.close();
     }
 
-    std::string line;
-    while (std::getline(file, line)) {
-        // Ignora linhas vazias e comentários (linhas que começam com '#').
-        if (!line.empty() && line.front() != '#')
-            lines.push_back(line);
-    }
-    return lines;
-}
+    // 2. Carregar Álbuns
+    std::ifstream fileAlbuns(m_albunsFile);
+    if (fileAlbuns.is_open()) {
+        std::string linha;
+        while (std::getline(fileAlbuns, linha)) {
+            if (linha.empty()) continue;
+            std::stringstream ss(linha);
+            std::string idAlbStr, idArtStr, titulo, anoStr, precoStr, formato;
 
-void DataManager::writeLines(const std::string& filename,
-                             const std::vector<std::string>& lines) const {
-    const std::string path = buildPath(filename);
+            if (std::getline(ss, idAlbStr, ';') &&
+                std::getline(ss, idArtStr, ';') &&
+                std::getline(ss, titulo, ';') &&
+                std::getline(ss, anoStr, ';') &&
+                std::getline(ss, precoStr, ';') &&
+                std::getline(ss, formato, ';')) {
 
-    std::ofstream file(path, std::ios::out | std::ios::trunc);
-    if (!file.is_open())
-        throw std::runtime_error("[DataManager] Nao foi possivel escrever em: " + path);
+                int idArtista = std::stoi(idArtStr);
+                int ano = std::stoi(anoStr);
+                float preco = std::stof(precoStr);
 
-    for (const auto& line : lines)
-        file << line << '\n';
-}
-
-// ─── Métodos privados — load ──────────────────────────────────────────────────
-
-bool DataManager::loadArtists() {
-    try {
-        std::vector<std::string> lines = readLines(FILE_ARTISTS);
-
-        for (const auto& line : lines) {
-            // TODO: fazer parse da linha e construir objeto Artist.
-            // Exemplo de formato CSV esperado:
-            //   id,nome,genero
-            //   1,Pink Floyd,Rock
-            (void)line; // suprimir aviso de não utilização até ao parse real
+                // Usa o teu metodo oficial do catalogo
+                catalogo.adicionarAlbum(titulo, idArtista, ano, preco, formato);
+            }
         }
-        std::cout << "[DataManager] Artistas carregados: "
-                  << lines.size() << " registos.\n";
-        return true;
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
+        fileAlbuns.close();
     }
+    return true;
 }
 
-bool DataManager::loadAlbums() {
-    try {
-        std::vector<std::string> lines = readLines(FILE_ALBUMS);
+bool DataManager::guardarDados(const ManagerCatalogo& catalogo) {
+    assegurarDiretorio();
 
-        for (const auto& line : lines) {
-            // TODO: parse e construção de Album.
-            // Formato previsto: id,titulo,artistaId,formato,preco,rating
-            (void)line;
-        }
-        std::cout << "[DataManager] Albums carregados: "
-                  << lines.size() << " registos.\n";
-        return true;
+    // 1. Guardar Artistas
+    std::ofstream fileArtistas(m_artistasFile);
+    if (!fileArtistas.is_open()) return false;
 
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
+    const auto& artistas = catalogo.obterArtistas();
+    for (size_t i = 0; i < artistas.size(); ++i) {
+        // Usa os getters exatos do teu Artista.h
+        fileArtistas << artistas[i].get_id_artista() << ";"
+                     << artistas[i].get_nome() << ";"
+                     << artistas[i].get_pais() << ";"
+                     << artistas[i].get_genero() << "\n";
     }
-}
+    fileArtistas.close();
 
-bool DataManager::loadTracks() {
-    try {
-        std::vector<std::string> lines = readLines(FILE_TRACKS);
+    // 2. Guardar Álbuns
+    std::ofstream fileAlbuns(m_albunsFile);
+    if (!fileAlbuns.is_open()) return false;
 
-        for (const auto& line : lines) {
-            // TODO: parse e construção de Track.
-            // Formato previsto: id,titulo,albumId,duracao
-            (void)line;
-        }
-        std::cout << "[DataManager] Faixas carregadas: "
-                  << lines.size() << " registos.\n";
-        return true;
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
+    const auto& albuns = catalogo.obterAlbuns();
+    for (size_t i = 0; i < albuns.size(); ++i) {
+        // Usa os getters exatos do teu Album.h
+        fileAlbuns << albuns[i].id_album() << ";"
+                   << albuns[i].id_artista() << ";"
+                   << albuns[i].titulo1() << ";"
+                   << albuns[i].ano1() << ";"
+                   << albuns[i].preco1() << ";"
+                   << albuns[i].formato1() << "\n";
     }
-}
+    fileAlbuns.close();
 
-bool DataManager::loadSales() {
-    try {
-        std::vector<std::string> lines = readLines(FILE_SALES);
-
-        for (const auto& line : lines) {
-            // TODO: parse e construção de Sale.
-            // Formato previsto: id,data,clienteId,albumId,preco
-            (void)line;
-        }
-        std::cout << "[DataManager] Vendas carregadas: "
-                  << lines.size() << " registos.\n";
-        return true;
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
-    }
-}
-
-// ─── Métodos privados — save ──────────────────────────────────────────────────
-
-bool DataManager::saveArtists() const {
-    try {
-        std::vector<std::string> lines;
-
-        // TODO: serializar cada Artist de m_artists para uma string CSV.
-        // Exemplo:
-        //   for (const auto& artist : m_artists)
-        //       lines.push_back(artist.toCSV());
-
-        writeLines(FILE_ARTISTS, lines);
-        return true;
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
-    }
-}
-
-bool DataManager::saveAlbums() const {
-    try {
-        std::vector<std::string> lines;
-        // TODO: serializar cada Album de m_albums.
-        writeLines(FILE_ALBUMS, lines);
-        return true;
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
-    }
-}
-
-bool DataManager::saveTracks() const {
-    try {
-        std::vector<std::string> lines;
-        // TODO: serializar cada Track de m_tracks.
-        writeLines(FILE_TRACKS, lines);
-        return true;
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
-    }
-}
-
-bool DataManager::saveSales() const {
-    try {
-        std::vector<std::string> lines;
-        // TODO: serializar cada Sale de m_sales.
-        writeLines(FILE_SALES, lines);
-        return true;
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << "\n";
-        return false;
-    }
-}
-
-// ─── Auxiliar privado ─────────────────────────────────────────────────────────
-
-std::string DataManager::buildPath(const std::string& filename) const {
-    return m_dataDir + "/" + filename;
+    return true;
 }

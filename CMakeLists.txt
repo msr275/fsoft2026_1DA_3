@@ -5,24 +5,38 @@ set(CMAKE_CXX_STANDARD 17)
 
 
 include_directories(Project/Headers)
-include_directories(Project/headers)
-
 
 add_executable(fsoft2026_1DA_3
         Project/main.cpp
-        Project/Sources/DataManager.cpp
+
         Project/Headers/DataManager.h
-        Project/Sources/Album.cpp
-        Project/Sources/Artista.cpp
-        Project/Sources/ManagerCatalogo.cpp
+        Project/Sources/DataManager.cpp
+
         Project/Headers/Album.h
+        Project/Sources/Album.cpp
+
         Project/Headers/Artista.h
+        Project/Sources/Artista.cpp
+
         Project/Headers/ManagerCatalogo.h
-        Project/sources/Utils.cpp
-        Project/headers/Menus.h
-        Project/sources/views/Menus.cpp
-        Project/headers/InvalidDataException.h
-        Project/sources/exceptions/InvalidDataException.cpp
+        Project/Sources/ManagerCatalogo.cpp
+
+        Project/Headers/Carrinho.h
+        Project/Sources/Carrinho.cpp
+
+        Project/Headers/Menus.h
+        Project/Sources/Menus.cpp
+
+        Project/Headers/Utils.h
+        Project/Sources/Utils.cpp
+
+        Project/Headers/Rating.h
+        Project/Sources/Rating.cpp
+
+        Project/Headers/Venda.h
+
+        Project/Headers/InvalidDataException.h
+        Project/sources/InvalidDataException.cpp
 )
 
-target_include_directories(fsoft2026_1DA_3 PUBLIC Project/headers)
+target_include_directories(fsoft2026_1DA_3 PUBLIC Project/Headers)

@@ -1,7 +1,7 @@
 #include "Venda.h"
 #include <iostream>
 
-Venda::Venda(int id, const std::string& dataAtual, const carrinho& cart)
+Venda::Venda(int id, const std::string& dataAtual, const Carrinho& cart)
     : idVenda(id), data(dataAtual) {
     valorTotal = cart.calcularTotal();
 }

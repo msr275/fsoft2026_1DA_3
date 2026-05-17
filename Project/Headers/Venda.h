@@ -2,7 +2,7 @@
 #define FSOFT2026_1DA_3_VENDA_H
 
 #include <string>
-#include "carrinho.h"
+#include "Carrinho.h"
 
 class Venda {
 private:
@@ -11,7 +11,7 @@ private:
     float valorTotal;
 
 public:
-    Venda(int id, const std::string& dataAtual, const carrinho& cart);
+    Venda(int id, const std::string& dataAtual, const Carrinho& cart);
     int getIdVenda() const;
     std::string getData() const;
     float getValorTotal() const;
