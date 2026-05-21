@@ -2,10 +2,12 @@
 #define FSOFT2026_1DA_3_ALBUM_H
 #include <string>
 
+class Artisa;
+
 class Album {
 private:
     int idAlbum;
-    int idArtista;
+    Artista* artista;
     std::string titulo;
     int ano;
     float preco;
@@ -14,9 +16,9 @@ private:
 
 public:
     //construtor
-    Album(int idAlbum, int idArtista, const std::string& titulo, int ano, float preco, const std::string& formato,float novoRating = 0.0f) {
+    Album(int idAlbum, Artista* artistaPtr, const std::string& titulo, int ano, float preco, const std::string& formato,float novoRating = 0.0f) {
         this->idAlbum = idAlbum;
-        this->idArtista = idArtista;
+        this->artista = artistaPtr;
         this->titulo = titulo;
         this->ano = ano;
         this->preco = preco;
@@ -26,7 +28,8 @@ public:
 
     // Getters
     int id_album() const { return idAlbum; }
-    int id_artista() const { return idArtista; }
+    Artista* get_artista() const { return artista; }
+    int id_artista() const;
     std::string titulo1() const { return titulo; }
     int ano1() const { return ano; }
     float preco1() const { return preco; }
@@ -36,7 +39,7 @@ public:
 
     // Setters
     void set_id_album(int id_album) { idAlbum = id_album; }
-    void set_id_artista(int id_artista) { idArtista = id_artista; }
+    void set_artista(Artista* novoArtista) { artista = novoArtista; }
     void set_titulo(const std::string &titulo) { this->titulo = titulo; }
     void set_ano(int ano) { this->ano = ano; }
     void set_preco(float preco) { this->preco = preco; }

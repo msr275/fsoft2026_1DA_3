@@ -11,17 +11,17 @@ void ManagerCatalogo::adicionarArtista(const std::string& nome, const std::strin
 }
 
 void ManagerCatalogo::adicionarAlbum(const std::string& titulo, int id_artista, int ano, float preco, const std::string& formato) {
-    bool artistaEncontrado = false;
+    Artista* artistaEncontrado = nullptr;
 
     // verifica se já existe o artista
     for (size_t i = 0; i < listaArtistas.size(); i++) {
         if (listaArtistas[i].get_id_artista() == id_artista) {
-            artistaEncontrado = true;
+            artistaEncontrado = &listaArtistas[i];
             break;
         }
     }
-    if (artistaEncontrado) {
-        Album novoAlbum(idproximoAlbum, id_artista, titulo, ano, preco, formato);
+    if (artistaEncontrado != nullptr) {
+        Album novoAlbum(idproximoAlbum, artistaEncontrado, titulo, ano, preco, formato);
         listaAlbuns.push_back(novoAlbum);
         idproximoAlbum++;
     } else {
@@ -42,7 +42,7 @@ bool ManagerCatalogo::removerAlbum(int idParaApagar) {
 
 bool ManagerCatalogo::removerArtista(int idParaApagar) {
     for (int i = static_cast<int>(listaAlbuns.size()) - 1; i >= 0; i--) {
-        if (listaAlbuns[i].id_artista() == idParaApagar) {
+        if (listaAlbuns[i].get_artista() != nullptr && listaAlbuns[i].get_artista()->get_id_artista()==idParaApagar) {
             listaAlbuns.erase(listaAlbuns.begin() + i);
         }
     }
@@ -77,14 +77,11 @@ const std::vector<Album>& ManagerCatalogo::obterAlbuns() const {
 std::vector<Album> ManagerCatalogo::pesquisarPorGenero(const std::string& generoProcurado) {
     std::vector<Album> resultados;
     for (size_t i = 0; i < listaAlbuns.size(); i++) {
-        for (size_t j = 0; j < listaArtistas.size(); j++) {
-            if (listaArtistas[j].get_id_artista() == listaAlbuns[i].id_artista()) {
-                if (listaArtistas[j].get_genero() == generoProcurado) {
+            if (listaAlbuns[i].get_artista() != nullptr && listaAlbuns[i].get_artista()->get_genero() == generoProcurado){
                     resultados.push_back(listaAlbuns[i]);
-                }
-                break;
+
+
             }
-        }
     }
     return resultados;
 }
@@ -113,13 +110,10 @@ std::vector<Album> ManagerCatalogo::pesquisarPorNomedeAlbum(const std::string& n
 std::vector<Album> ManagerCatalogo::pesquisaPorNomedeArtista(const std::string& artistaProcurado) {
     std::vector<Album> resultados;
     for (size_t i = 0; i < listaAlbuns.size(); i++) {
-        for (size_t j = 0; j < listaArtistas.size(); j++) {
-            if (listaArtistas[j].get_id_artista() == listaAlbuns[i].id_artista()) {
-                std::string nomeArtista = listaArtistas[j].get_nome();
-                if (nomeArtista.find(artistaProcurado) != std::string::npos) {
-                    resultados.push_back(listaAlbuns[i]);
-                }
-                break;
+        if (listaAlbuns[i].get_artista() != nullptr) {
+            std::string nomeArtista = listaAlbuns[i].get_artista()->get_nome();
+            if (nomeArtista.find(artistaProcurado) != std::string::npos) {
+                resultados.push_back(listaAlbuns[i]);
             }
         }
     }
