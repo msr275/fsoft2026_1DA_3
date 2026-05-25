@@ -13,7 +13,11 @@ DataManager::DataManager(const std::string& dataDir) : m_dataDir(dataDir) {
 }
 
 void DataManager::assegurarDiretorio() {
+#ifdef _WIN32
+    if (mkdir(m_dataDir.c_str()) == 0 || errno == EEXIST) {
+#else
     if (mkdir(m_dataDir.c_str(), 0777) == 0 || errno == EEXIST) {
+#endif
     } else {
         std::cerr << "[ERRO] Nao foi possivel criar o diretorio: " << m_dataDir << std::endl;
     }

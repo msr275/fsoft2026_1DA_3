@@ -2,7 +2,7 @@
 #define FSOFT2026_1DA_3_ALBUM_H
 #include <string>
 
-class Artisa;
+class Artista;
 
 class Album {
 private:
