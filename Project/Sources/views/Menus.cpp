@@ -266,7 +266,7 @@ void showCustomerMenu(ManagerCatalogo& catalogo) {
                 std::vector<Album> resultados;
                 std::string termo;
 
-                if (subChoice == 1) {
+                if (subChoice == 1) {  //Pesquisa por Nome do Álbum
                     std::cout << "Digite o nome do Álbum (ou parte): ";
                     std::cin.ignore();
                     std::getline(std::cin, termo);
@@ -276,7 +276,7 @@ void showCustomerMenu(ManagerCatalogo& catalogo) {
                     perguntarEAdicionarAoCarrinho(resultados, catalogo, meuCarrinho);
                     pressEnterToContinue();
                 }
-                else if (subChoice == 2) {
+                else if (subChoice == 2) {  //Pesquisa por Nome de Artista
                     std::cout << "Digite o nome do Artista (ou parte): ";
                     std::cin.ignore();
                     std::getline(std::cin, termo);
@@ -286,7 +286,7 @@ void showCustomerMenu(ManagerCatalogo& catalogo) {
                     perguntarEAdicionarAoCarrinho(resultados, catalogo, meuCarrinho);
                     pressEnterToContinue();
                 }
-                else if (subChoice == 3) {
+                else if (subChoice == 3) {  //Pesquisa por Género
                     std::cout << "Digite o Género: ";
                     std::cin.ignore();
                     std::getline(std::cin, termo);
@@ -296,7 +296,7 @@ void showCustomerMenu(ManagerCatalogo& catalogo) {
                     perguntarEAdicionarAoCarrinho(resultados, catalogo, meuCarrinho);
                     pressEnterToContinue();
                 }
-                else if (subChoice == 4) {
+                else if (subChoice == 4) {  //Pesquisa por Ano
                     int ano = getSafeInt("Digite o Ano: ", 1900, 2026);
                     resultados = catalogo.pesquisaPorAno(ano);
 
