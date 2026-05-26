@@ -2,6 +2,8 @@
 #include <iostream>
 #include <stdexcept>
 
+#include "exceptions/InvalidDataException.h"
+
 //--------------------------------------EDIÇÃO DE CATÁLOGO------------------------------
 
 void ManagerCatalogo::adicionarArtista(const std::string& nome, const std::string& pais, const std::string& genero) {
