@@ -4,7 +4,7 @@
 #include <string>
 
 void displayHeader();
-int getSafeInt(std::string prompt); // ADICIONADA: Faltava declarar esta versão aqui!
+int getSafeInt(std::string prompt);
 int getSafeInt(std::string prompt, int min, int max);
 void pressEnterToContinue();
 

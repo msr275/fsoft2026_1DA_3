@@ -2,7 +2,6 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "exceptions/InvalidDataException.h"
 
 //--------------------------------------EDIÇÃO DE CATÁLOGO------------------------------
 
