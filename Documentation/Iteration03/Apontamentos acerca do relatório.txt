@@ -1,0 +1,4 @@
+-Exposição do problema a resolver
+-Detalhes dos casos de uso
+-ATENÇÃO A FORMATAÇÃO
+-Mencionar todas as figuras usadas no texto antecedente
