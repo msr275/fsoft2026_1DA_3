@@ -1,5 +1,8 @@
 #include "../../Headers/models/Album.h"
 #include "../../Headers/models/Artista.h"
+#include "../../Headers/exceptions/InvalidDataException.h"
+#include "../../Headers/views/Utils.h"
+#include <cctype>
 
 // Construtor
 Album::Album(int idAlbum, Artista* artistaPtr, const std::string& titulo, int ano, float preco, const std::string& formato, float novoRating) {
@@ -49,26 +52,54 @@ float Album::rating1() const {
 }
 
 //Implementação dos Setters
-void Album::set_id_album(int id_album) {
-    idAlbum = id_album;
-}
-
 void Album::set_artista(Artista* novoArtista) {
-    artista = novoArtista;
+    if (artista == nullptr) {
+        throw InvalidDataException("Erro: O álbum necessita de um artista válido associado!");
+    }
+    this->artista = artista;
 }
 
 void Album::set_titulo(const std::string &titulo) {
-    this->titulo = titulo;
+    std::string tituloValido = limparEspacos(titulo);
+    if (tituloValido.empty()) {
+        throw InvalidDataException("Erro: O título do álbum não pode estar em branco!");
+    }
+    this->titulo = tituloValido;
 }
 
 void Album::set_ano(int ano) {
+    if (ano < 1700 || ano > 2026) {
+        throw InvalidDataException("Erro: Ano inválido! O ano deve situar-se entre 1900 e 2026.");
+    }
     this->ano = ano;
 }
 
 void Album::set_preco(float preco) {
+    if (preco < 0.0f) {
+        throw InvalidDataException("Erro: O preço do álbum não pode ser negativo!");
+    }
     this->preco = preco;
 }
 
 void Album::set_rating(float novoRating) {
     rating = novoRating;
+}
+
+void Album::set_formato(const std:: string &formato) {
+    std::string formatoLimpo = limparEspacos(formato);
+
+    std::string formMinusculo = formatoLimpo;
+    for (char &c : formMinusculo) {
+        c = std::tolower(static_cast<unsigned char>(c));
+    }
+
+    if (formMinusculo == "vinil") {
+        this->formato = "Vinil";
+    } else if (formMinusculo == "cd") {
+        this->formato = "CD";
+    } else if (formMinusculo == "digital") {
+        this->formato = "Digital";
+    } else {
+        throw InvalidDataException("Erro: Formato inválido! Escolha apenas entre 'Vinil', 'CD' ou 'Digital'.");
+    }
 }

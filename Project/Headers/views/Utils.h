@@ -7,5 +7,6 @@ void displayHeader();
 int getSafeInt(std::string prompt);
 int getSafeInt(std::string prompt, int min, int max);
 void pressEnterToContinue();
+std::string limparEspacos(const std::string& str);
 
 #endif // FSOFT2026_1DA_3_UTILS_H

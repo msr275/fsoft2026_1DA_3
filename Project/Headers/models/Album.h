@@ -31,12 +31,12 @@ public:
     float rating1() const;
 
     // Setters
-    void set_id_album(int id_album);
     void set_artista(Artista* novoArtista);
     void set_titulo(const std::string &titulo);
     void set_ano(int ano);
     void set_preco(float preco);
     void set_rating(float novoRating);
+    void set_formato(const std:: string &formato);
 };
 
 #endif // FSOFT2026_1DA_3_ALBUM_H

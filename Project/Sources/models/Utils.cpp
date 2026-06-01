@@ -1,6 +1,7 @@
 #include "../../Headers/views/Utils.h"
 #include <iostream>
 #include <limits>
+#include <string>
 
 void displayHeader() {
     std::cout << "\n------------------------" << std::endl;
@@ -39,4 +40,13 @@ void pressEnterToContinue() {
     std::cout << "\nPressione ENTER para continuar";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin.get();
+}
+
+//Limpar strings do user
+std::string limparEspacos(const std::string& str) {
+    if (str.empty()) return str;
+    size_t primeiro = str.find_first_not_of(" \t\r\n");
+    if (primeiro == std::string::npos) return "";
+    size_t ultimo = str.find_last_not_of(" \t\r\n");
+    return str.substr(primeiro, (ultimo - primeiro + 1));
 }
