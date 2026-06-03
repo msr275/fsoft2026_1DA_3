@@ -68,7 +68,7 @@ void Album::set_titulo(const std::string &titulo) {
 }
 
 void Album::set_ano(int ano) {
-    if (ano < 1700 || ano > 2026) {
+    if (ano < 1900 || ano > 2026) {
         throw InvalidDataException("Erro: Ano inválido! O ano deve situar-se entre 1900 e 2026.");
     }
     this->ano = ano;
