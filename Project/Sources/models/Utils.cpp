@@ -50,3 +50,20 @@ std::string limparEspacos(const std::string& str) {
     size_t ultimo = str.find_last_not_of(" \t\r\n");
     return str.substr(primeiro, (ultimo - primeiro + 1));
 }
+
+std::string antiCamposVazios(const std::string& mensagem) {
+    std::string input;
+    while (true) {
+        std::cout << mensagem;
+        if (std::cin.peek() == '\n') {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        std::getline(std::cin, input);
+        input = limparEspacos(input);
+
+        if (!input.empty()) {
+            return input;
+        }
+        std::cout << "[ERRO] Este campo é obrigatório e não pode ficar em branco!\n\n";
+    }
+}

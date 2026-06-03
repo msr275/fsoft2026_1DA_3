@@ -23,8 +23,7 @@ void DataManager::assegurarDiretorio() {
     }
 }
 
-bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
-    // Carregar Artistas
+bool DataManager::carregarDados() {
     std::ifstream fileArtistas(m_artistasFile);
     if (fileArtistas.is_open()) {
         std::string linha;
@@ -38,13 +37,12 @@ bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
                 std::getline(ss, pais, ';') &&
                 std::getline(ss, genero, ';')) {
 
-                catalogo.adicionarArtista(nome, pais, genero);
+                Artista::adicionarArtista(nome, pais, genero);
             }
         }
         fileArtistas.close();
     }
 
-    // Carregar Álbuns
     std::ifstream fileAlbuns(m_albunsFile);
     if (fileAlbuns.is_open()) {
         std::string linha;
@@ -64,7 +62,7 @@ bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
                 int ano = std::stoi(anoStr);
                 float preco = std::stof(precoStr);
 
-                catalogo.adicionarAlbum(titulo, idArtista, ano, preco, formato);
+                Album::adicionarAlbum(titulo, idArtista, ano, preco, formato);
             }
         }
         fileAlbuns.close();
@@ -72,16 +70,14 @@ bool DataManager::carregarDados(ManagerCatalogo& catalogo) {
     return true;
 }
 
-bool DataManager::guardarDados(const ManagerCatalogo& catalogo) {
+bool DataManager::guardarDados() {
     assegurarDiretorio();
 
-    // 1. Guardar Artistas
     std::ofstream fileArtistas(m_artistasFile);
     if (!fileArtistas.is_open()) return false;
 
-    const auto& artistas = catalogo.obterArtistas();
+    const auto& artistas = Artista::obterArtistas();
     for (size_t i = 0; i < artistas.size(); ++i) {
-        // Usa os getters
         fileArtistas << artistas[i].get_id_artista() << ";"
                      << artistas[i].get_nome() << ";"
                      << artistas[i].get_pais() << ";"
@@ -93,7 +89,7 @@ bool DataManager::guardarDados(const ManagerCatalogo& catalogo) {
     std::ofstream fileAlbuns(m_albunsFile);
     if (!fileAlbuns.is_open()) return false;
 
-    const auto& albuns = catalogo.obterAlbuns();
+    const auto& albuns = Album::obterAlbuns();
     for (size_t i = 0; i < albuns.size(); ++i) {
         fileAlbuns << albuns[i].id_album() << ";"
                    << albuns[i].id_artista() << ";"

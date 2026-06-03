@@ -3,16 +3,15 @@
 
 #include <vector>
 
-class ManagerCatalogo;
 class Carrinho;
 class Album;
 
 void exibirListaAlbuns(const std::vector<Album>& albuns);
-void perguntarEAdicionarAoCarrinho(const std::vector<Album>& albunsAtuais, ManagerCatalogo& catalogo, Carrinho& carrinho);
-void showAdminMenu(ManagerCatalogo& catalogo);
-void showCustomerMenu(ManagerCatalogo& catalogo);
+void perguntarEAdicionarAoCarrinho(const std::vector<Album>& albunsAtuais, Carrinho& carrinho);
+void showAdminMenu();
+void showCustomerMenu();
 void runMainMenu();
 void ecrãVenda(Carrinho& carrinho);
-void ecrãRating(ManagerCatalogo& catalogo);
+void ecrãRating();
 
 #endif

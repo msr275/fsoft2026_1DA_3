@@ -2,7 +2,6 @@
 #define DATAMANAGER_H
 
 #include <string>
-#include "../controllers/ManagerCatalogo.h"
 
 class DataManager {
 private:
@@ -15,8 +14,8 @@ private:
 public:
     DataManager(const std::string& dataDir = "data");
 
-    bool carregarDados(ManagerCatalogo& catalogo);
-    bool guardarDados(const ManagerCatalogo& catalogo);
+    bool carregarDados();
+    bool guardarDados();
 };
 
 #endif

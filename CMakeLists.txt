@@ -18,9 +18,6 @@ add_executable(fsoft2026_1DA_3
         Project/Headers/models/Artista.h
         Project/Sources/models/Artista.cpp
 
-        Project/Headers/controllers/ManagerCatalogo.h
-        Project/Sources/controllers/ManagerCatalogo.cpp
-
         Project/Headers/models/Carrinho.h
         Project/Sources/models/Carrinho.cpp
 
@@ -37,6 +34,8 @@ add_executable(fsoft2026_1DA_3
 
         Project/Headers/exceptions/InvalidDataException.h
         Project/Sources/exceptions/InvalidDataException.cpp
+        Project/Headers/controllers/Pesquisa.h
+        Project/Sources/controllers/Pesquisa.cpp
 )
 
 target_include_directories(fsoft2026_1DA_3 PUBLIC Project/Headers)

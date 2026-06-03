@@ -1,13 +1,13 @@
 #include "../../Headers/views/Menus.h"
 #include "../../Headers/views/Utils.h"
 #include "../../Headers/exceptions/InvalidDataException.h"
-#include "../../Headers/controllers/ManagerCatalogo.h"
 #include "../../Headers/models/Album.h"
+#include "../../Headers/models/Artista.h"
+#include "../../Headers/controllers/Pesquisa.h"
 #include "../../Headers/models/Carrinho.h"
 #include "../../Headers/persistence/DataManager.h"
 #include <iostream>
 #include <vector>
-
 
 // exibe os álbuns no ecrã
 void exibirListaAlbuns(const std::vector<Album>& albuns) {
@@ -15,7 +15,7 @@ void exibirListaAlbuns(const std::vector<Album>& albuns) {
         std::cout << "\n[AVISO] Nenhum álbum encontrado para esta pesquisa.\n";
         return;
     }
-    std::cout << "\n================= ÁLBuNS ENCONTRADOS =================\n";
+    std::cout << "\n================= ÁLBUNS ENCONTRADOS =================\n";
     for (size_t i = 0; i < albuns.size(); i++) {
         std::cout << "ID: " << albuns[i].id_album()
                   << " | Título: " << albuns[i].titulo1()
@@ -25,9 +25,9 @@ void exibirListaAlbuns(const std::vector<Album>& albuns) {
     std::cout << "======================================================\n";
 }
 
-//pergunta se quer comprar baseado na lista atual e adiciona ao carrinho
-void perguntarEAdicionarAoCarrinho(const std::vector<Album>& albunsAtuais, ManagerCatalogo& catalogo, Carrinho& carrinho) {
-    if (albunsAtuais.empty()) return; // Se não houver álbuns na pesquisa, não faz sentido perguntar
+// pergunta se quer comprar baseado na lista atual e adiciona ao carrinho
+void perguntarEAdicionarAoCarrinho(const std::vector<Album>& albunsAtuais, Carrinho& carrinho) {
+    if (albunsAtuais.empty()) return;
 
     std::cout << "\nDeseja adicionar algum destes albuns encontrados ao seu carrinho?\n";
     std::cout << "1. Sim, introduzir ID do album\n";
@@ -37,30 +37,18 @@ void perguntarEAdicionarAoCarrinho(const std::vector<Album>& albunsAtuais, Manag
     if (opcaoCompra == 1) {
         int idAlb = getSafeInt("Introduza o ID do Álbum desejado: ", 1, 99999);
 
-        // garante que o cliente só escolhe um ID que realmente apareceu no ecrã
-        bool pertenceAosResultados = false;
-        for (size_t i = 0; i < albunsAtuais.size(); i++) {
-            if (albunsAtuais[i].id_album() == idAlb) {
-                pertenceAosResultados = true;
-                break;
-            }
-        }
+        Album* albPtr = Album::obterAlbumPorId(idAlb);
 
-        if (pertenceAosResultados) {
-            Album* albPtr = catalogo.obterAlbumPorId(idAlb);
-            if (albPtr != nullptr) {
-                carrinho.adicionarAlbum(albPtr);
-                std::cout << "\n[SUCESSO] '" << albPtr->titulo1() << "' adicionado ao carrinho!\n";
-            } else {
-                std::cout << "\n[ERRO] Não foi possivel obter a referência do álbum.\n";
-            }
+        if (albPtr != nullptr) {
+            carrinho.adicionarAlbum(albPtr);
+            std::cout << "\n[SUCESSO] '" << albPtr->titulo1() << "' adicionado ao carrinho!\n";
         } else {
-            std::cout << "\n[ERRO] O ID introduzido não faz parte dos álbuns listados na pesquisa.\n";
+            std::cout << "\n[ERRO] O ID introduzido não corresponde a nenhum álbum do catálogo.\n";
         }
     }
 }
 
-void showAdminMenu(ManagerCatalogo& catalogo) {
+void showAdminMenu() {
     int choice = -1;
     while (choice != 0) {
         displayHeader();
@@ -74,41 +62,25 @@ void showAdminMenu(ManagerCatalogo& catalogo) {
 
         choice = getSafeInt("Escolha Admin: ", 0, 5);
 
-        if (choice == 1) { // 1. ADICIONAR ARTISTA
+        if (choice == 1) {
             std::string nome, pais, genero;
-            std::cout << "Nome do Artista: ";
-            std::cin.ignore();
-            std::getline(std::cin, nome);
-            std::cout << "País: ";
-            std::getline(std::cin, pais);
-            std::cout << "Género: ";
-            std::getline(std::cin, genero);
 
-            catalogo.adicionarArtista(nome, pais, genero);
+            nome = antiCamposVazios("Nome do Artista: ");
+            pais = antiCamposVazios("País: ");
+            genero = antiCamposVazios("Género: ");
+
+            Artista::adicionarArtista(nome, pais, genero);
             std::cout << "\n[SUCESSO] Artista adicionado ao catálogo!\n";
             pressEnterToContinue();
         }
-        else if (choice == 2) { // 2. ADICIONAR ALBUM
+        else if (choice == 2) {
             std::string titulo, formato, nomeArtistaProcurado;
             int ano;
 
-            std::cout << "Título do Álbum: ";
-            std::cin.ignore();
-            std::getline(std::cin, titulo);
+            titulo = antiCamposVazios("Título do Álbum: ");
+            nomeArtistaProcurado = antiCamposVazios("Nome do Artista associado: ");
 
-            std::cout << "Nome do Artista associado: ";
-            std::getline(std::cin, nomeArtistaProcurado);
-
-            const auto& artistas = catalogo.obterArtistas();
-            int idArtistaEncontrado = -1;
-
-            for (size_t i = 0; i < artistas.size(); i++) {
-                if (artistas[i].get_nome().find(nomeArtistaProcurado) != std::string::npos) {
-                    idArtistaEncontrado = artistas[i].get_id_artista();
-                    std::cout << "[INFO] Artista encontrado: " << artistas[i].get_nome() << "\n";
-                    break;
-                }
-            }
+            int idArtistaEncontrado = Artista::obterIdPorNome(nomeArtistaProcurado);
 
             if (idArtistaEncontrado == -1) {
                 std::cout << "\n[ERRO] Artista '" << nomeArtistaProcurado << "' não existe. Crie o artista primeiro na opção 1.\n";
@@ -116,65 +88,50 @@ void showAdminMenu(ManagerCatalogo& catalogo) {
                 continue;
             }
 
-            ano = getSafeInt("Ano de Lançamento: ", 1900, 2026);
+            ano = getSafeInt("Ano de Lançamento (1700-2026): ", 1700, 2026);
 
             std::string precoInput;
             float preco = -1;
-            while (preco < 0) {
+            while (preco <= 0) {
                 std::cout << "Preço (EUR): ";
                 std::cin >> precoInput;
-
                 for (size_t i = 0; i < precoInput.size(); i++) {
                     if (precoInput[i] == ',') precoInput[i] = '.';
                 }
-
                 try {
                     preco = std::stof(precoInput);
-                    if (preco < 0) std::cout << "[ERRO] O preço não pode ser negativo!\n";
+                    if (preco <= 0) std::cout << "[ERRO] O preço deve ser maior que zero!\n";
                 } catch (const std::exception&) {
-                    std::cout << "[ERRO] Preço inválido! Use apenas números (ex: 12.50).\n";
+                    std::cout << "[ERRO] Preço inválido! Use apenas números.\n";
                     preco = -1;
                 }
             }
-            std::cin.ignore(9999, '\n');
 
-            std::cout << "Formato (ex: Vinil, CD, Digital): ";
-            std::getline(std::cin, formato);
+            formato = antiCamposVazios("Formato (ex: Vinil, CD, Digital): ");
 
             try {
-                catalogo.adicionarAlbum(titulo, idArtistaEncontrado, ano, preco, formato);
+                Album::adicionarAlbum(titulo, idArtistaEncontrado, ano, preco, formato);
                 std::cout << "\n[SUCESSO] Álbum '" << titulo << "' adicionado com sucesso!\n";
             } catch (const std::invalid_argument& e) {
                 std::cout << "\n" << e.what() << "\n";
             }
             pressEnterToContinue();
         }
-        else if (choice == 3) { // 3. REMOVER ARTISTA
+        else if (choice == 3) {
             std::string nomeArtistaProcurado;
-            std::cout << "Nome do Artista a remover: ";
-            std::cin.ignore();
-            std::getline(std::cin, nomeArtistaProcurado);
 
-            const auto& artistas = catalogo.obterArtistas();
-            int idArtistaEncontrado = -1;
-            std::string nomeReal;
+            nomeArtistaProcurado = antiCamposVazios("Nome do Artista a remover: ");
 
-            for (size_t i = 0; i < artistas.size(); i++) {
-                if (artistas[i].get_nome().find(nomeArtistaProcurado) != std::string::npos) {
-                    idArtistaEncontrado = artistas[i].get_id_artista();
-                    nomeReal = artistas[i].get_nome();
-                    break;
-                }
-            }
+            int idArtistaEncontrado = Artista::obterIdPorNome(nomeArtistaProcurado);
 
             if (idArtistaEncontrado != -1) {
-                std::cout << "[AVISO] Isto vai remover o artista '" << nomeReal << "' e TODOS os seus álbuns!\n";
+                std::cout << "[AVISO] Isto vai remover o artista e TODOS os seus álbuns!\n";
                 std::cout << "1. Confirmar Remoção\n";
                 std::cout << "0. Cancelar\n";
                 int confirmar = getSafeInt("Sua escolha: ", 0, 1);
 
                 if (confirmar == 1) {
-                    catalogo.removerArtista(idArtistaEncontrado);
+                    Artista::removerArtista(idArtistaEncontrado);
                     std::cout << "\n[SUCESSO] Artista e álbuns removidos com sucesso!\n";
                 } else {
                     std::cout << "\n[INFO] Operação cancelada.\n";
@@ -184,19 +141,18 @@ void showAdminMenu(ManagerCatalogo& catalogo) {
             }
             pressEnterToContinue();
         }
-        else if (choice == 4) { // REMOVER ÁLBUM
+        else if (choice == 4) {
             std::string nomeAlbumProcurado;
-            std::cout << "Nome do Álbum a remover: ";
-            std::cin.ignore();
-            std::getline(std::cin, nomeAlbumProcurado);
 
-            std::vector<Album> correspondencias = catalogo.pesquisarPorNomedeAlbum(nomeAlbumProcurado);
+            nomeAlbumProcurado = antiCamposVazios("Nome do Álbum a remover: ");
+
+            std::vector<Album> correspondencias = Pesquisa::pesquisarPorNomedeAlbum(nomeAlbumProcurado);
 
             if (correspondencias.empty()) {
                 std::cout << "\n[ERRO] Nenhum álbum encontrado com esse nome.\n";
             }
             else if (correspondencias.size() == 1) {
-                if (catalogo.removerAlbum(correspondencias[0].id_album())) {
+                if (Album::removerAlbum(correspondencias[0].id_album())) {
                     std::cout << "\n[SUCESSO] Álbum '" << correspondencias[0].titulo1() << "' removido com sucesso!\n";
                 }
             }
@@ -208,7 +164,7 @@ void showAdminMenu(ManagerCatalogo& catalogo) {
 
                 int idEscolhido = getSafeInt("\nIntroduza o ID exato do álbum (0 para cancelar): ", 0, 99999);
                 if (idEscolhido != 0) {
-                    if (catalogo.removerAlbum(idEscolhido)) {
+                    if (Album::removerAlbum(idEscolhido)) {
                         std::cout << "\n[SUCESSO] Álbum removido com sucesso!\n";
                     } else {
                         std::cout << "\n[ERRO] ID inválido.\n";
@@ -217,16 +173,15 @@ void showAdminMenu(ManagerCatalogo& catalogo) {
             }
             pressEnterToContinue();
         }
-        else if (choice == 5) { //LISTA
+        else if (choice == 5) {
             displayHeader();
             std::cout << "--- LISTA COMPLETA DE ÁLBUNS ---\n" << std::endl;
 
-            const auto& todosAlbuns = catalogo.obterAlbuns();
+            const auto& todosAlbuns = Album::obterAlbuns();
 
             if (todosAlbuns.empty()) {
                 std::cout << "[INFO] O catálogo de álbuns está completamente vazio de momento.\n";
             } else {
-                // Reaproveita a função exibirListaAlbuns que já tem a formatação do Rating pronta!
                 exibirListaAlbuns(todosAlbuns);
                 std::cout << "\nTotal de álbuns registados: " << todosAlbuns.size() << "\n";
             }
@@ -235,8 +190,7 @@ void showAdminMenu(ManagerCatalogo& catalogo) {
     }
 }
 
-// MENU DO CLIENTE
-void showCustomerMenu(ManagerCatalogo& catalogo) {
+void showCustomerMenu() {
     Carrinho meuCarrinho;
     int choice = -1;
 
@@ -266,42 +220,39 @@ void showCustomerMenu(ManagerCatalogo& catalogo) {
                 std::vector<Album> resultados;
                 std::string termo;
 
-                if (subChoice == 1) {  //Pesquisa por Nome do Álbum
-                    std::cout << "Digite o nome do Álbum (ou parte): ";
-                    std::cin.ignore();
-                    std::getline(std::cin, termo);
-                    resultados = catalogo.pesquisarPorNomedeAlbum(termo);
+                if (subChoice == 1) {
+                    // 💡 Força a digitar algo válido antes de pesquisar
+                    termo = antiCamposVazios("Digite o nome do Álbum (ou parte): ");
+                    resultados = Pesquisa::pesquisarPorNomedeAlbum(termo);
 
                     exibirListaAlbuns(resultados);
-                    perguntarEAdicionarAoCarrinho(resultados, catalogo, meuCarrinho);
+                    perguntarEAdicionarAoCarrinho(resultados, meuCarrinho);
                     pressEnterToContinue();
                 }
-                else if (subChoice == 2) {  //Pesquisa por Nome de Artista
-                    std::cout << "Digite o nome do Artista (ou parte): ";
-                    std::cin.ignore();
-                    std::getline(std::cin, termo);
-                    resultados = catalogo.pesquisaPorNomedeArtista(termo);
+                else if (subChoice == 2) {
+                    // 💡 Força a digitar algo válido antes de pesquisar
+                    termo = antiCamposVazios("Digite o nome do Artista (ou parte): ");
+                    resultados = Pesquisa::pesquisaPorNomedeArtista(termo);
 
                     exibirListaAlbuns(resultados);
-                    perguntarEAdicionarAoCarrinho(resultados, catalogo, meuCarrinho);
+                    perguntarEAdicionarAoCarrinho(resultados, meuCarrinho);
                     pressEnterToContinue();
                 }
-                else if (subChoice == 3) {  //Pesquisa por Género
-                    std::cout << "Digite o Género: ";
-                    std::cin.ignore();
-                    std::getline(std::cin, termo);
-                    resultados = catalogo.pesquisarPorGenero(termo);
+                else if (subChoice == 3) {
+                    // 💡 Força a digitar algo válido antes de pesquisar
+                    termo = antiCamposVazios("Digite o Género: ");
+                    resultados = Pesquisa::pesquisarPorGenero(termo);
 
                     exibirListaAlbuns(resultados);
-                    perguntarEAdicionarAoCarrinho(resultados, catalogo, meuCarrinho);
+                    perguntarEAdicionarAoCarrinho(resultados, meuCarrinho);
                     pressEnterToContinue();
                 }
-                else if (subChoice == 4) {  //Pesquisa por Ano
-                    int ano = getSafeInt("Digite o Ano: ", 1900, 2026);
-                    resultados = catalogo.pesquisaPorAno(ano);
+                else if (subChoice == 4) {
+                    int ano = getSafeInt("Digite o Ano (1700-2026): ", 1700, 2026);
+                    resultados = Pesquisa::pesquisaPorAno(ano);
 
                     exibirListaAlbuns(resultados);
-                    perguntarEAdicionarAoCarrinho(resultados, catalogo, meuCarrinho);
+                    perguntarEAdicionarAoCarrinho(resultados, meuCarrinho);
                     pressEnterToContinue();
                 }
             }
@@ -329,16 +280,14 @@ void showCustomerMenu(ManagerCatalogo& catalogo) {
             ecrãVenda(meuCarrinho);
         }
         else if (choice == 5) {
-            ecrãRating(catalogo);
+            ecrãRating();
         }
     }
 }
 
 void runMainMenu() {
-    ManagerCatalogo meuCatalogo;
-    DataManager storage;
-
-    storage.carregarDados(meuCatalogo);
+    DataManager storage("/Users/rodrigosantos/leti/fsoft2026_1DA_3/data");
+    storage.carregarDados();
 
     int choice = -1;
     while (choice != 0) {
@@ -350,7 +299,7 @@ void runMainMenu() {
         choice = getSafeInt("\nSua Escolha: ", 0, 2);
 
         if (choice == 1) {
-            showCustomerMenu(meuCatalogo);
+            showCustomerMenu();
         }
         else if (choice == 2) {
             std::string pass;
@@ -361,7 +310,7 @@ void runMainMenu() {
                 if (pass != "fsoft2026") {
                     throw InvalidDataException("Acesso Negado: Palavra-passe Incorreta.");
                 }
-                showAdminMenu(meuCatalogo);
+                showAdminMenu();
             } catch (const InvalidDataException& e) {
                 std::cout << "\n[ALERTA DE SEGURANÇA] " << e.what() << std::endl;
                 pressEnterToContinue();
@@ -369,13 +318,12 @@ void runMainMenu() {
         }
     }
 
-    storage.guardarDados(meuCatalogo);
+    storage.guardarDados();
     std::cout << "\n[INFO] Dados salvos com sucesso. Até à próxima!\n";
 }
 
 void ecrãVenda(Carrinho& carrinho) {
     int opcao;
-
     do {
         displayHeader();
         std::cout << "--- O SEU CARRINHO DE COMPRAS ---\n" << std::endl;
@@ -403,7 +351,6 @@ void ecrãVenda(Carrinho& carrinho) {
 
         if (opcao == 1) {
             displayHeader();
-
             std::cout << "========================================\n";
             std::cout << "           RECIBO DE VENDA              \n";
             std::cout << "========================================\n";
@@ -413,7 +360,6 @@ void ecrãVenda(Carrinho& carrinho) {
             std::cout << "========================================\n\n";
 
             carrinho.limparCarrinho();
-
             pressEnterToContinue();
             return;
         }
@@ -424,7 +370,7 @@ void ecrãVenda(Carrinho& carrinho) {
     } while (opcao != 0);
 }
 
-void ecrãRating(ManagerCatalogo& catalogo) {
+void ecrãRating() {
     displayHeader();
     std::cout << "--- DEIXAR OPINIÃO (RATING) ---\n" << std::endl;
 
@@ -433,8 +379,7 @@ void ecrãRating(ManagerCatalogo& catalogo) {
     std::cin.ignore();
     std::getline(std::cin, nomeAlbumProcurado);
 
-    // Pesquisa os álbuns que correspondem ao nome
-    std::vector<Album> correspondencias = catalogo.pesquisarPorNomedeAlbum(nomeAlbumProcurado);
+    std::vector<Album> correspondencias = Pesquisa::pesquisarPorNomedeAlbum(nomeAlbumProcurado);
 
     if (correspondencias.empty()) {
         std::cout << "\n[ERRO] Nenhum álbum encontrado com esse nome no catálogo.\n";
@@ -444,13 +389,13 @@ void ecrãRating(ManagerCatalogo& catalogo) {
 
     Album* albumReal = nullptr;
 
-    // Se houver apenas um álbum escolhe logo esse
     if (correspondencias.size() == 1) {
-        albumReal = catalogo.obterAlbumPorId(correspondencias[0].id_album());
+        albumReal = Album::obterAlbumPorId(correspondencias[0].id_album());
+        std::cout << "\n[INFO] Álbum encontrado: '" << albumReal->titulo1()
+                  << "' (Ano: " << albumReal->ano1() << ")\n\n";
     }
-    //se houver vários, pede o nome exato
     else {
-        std::cout << "\nForam encontrados múltiplos álbuns com nomes semelhantes:\n";
+        std::cout << "\n[INFO] Foram encontrados múltiplos álbuns com nomes semelhantes:\n";
         for (size_t i = 0; i < correspondencias.size(); i++) {
             std::cout << "- " << correspondencias[i].titulo1() << " (Ano: " << correspondencias[i].ano1() << ")\n";
         }
@@ -461,23 +406,19 @@ void ecrãRating(ManagerCatalogo& catalogo) {
 
         for (size_t i = 0; i < correspondencias.size(); i++) {
             if (correspondencias[i].titulo1() == nomeEscolhido) {
-                albumReal = catalogo.obterAlbumPorId(correspondencias[i].id_album());
+                albumReal = Album::obterAlbumPorId(correspondencias[i].id_album());
                 break;
             }
         }
     }
 
-    // Se encontramos o apontador do álbum original, aplica o rating
     if (albumReal != nullptr) {
         int nota = getSafeInt("Insira a sua classificação (1 a 5 estrelas): ", 1, 5);
-
         albumReal->set_rating(static_cast<float>(nota));
 
-        std::cout << "\n[SUCESSO] Opinião registada para o álbum '" << albumReal->titulo1() << "' com " << nota << " estrelas.";
-        std::cout << "\nMuito obrigado pelo feedback!\n\n";
+        std::cout << "\n[SUCESSO] Opinião registada para o álbum '" << albumReal->titulo1() << "' com " << nota << " estrelas.\n";
     } else {
         std::cout << "\n[ERRO] O nome introduzido não corresponde a nenhum dos álbuns listados.\n";
     }
-
     pressEnterToContinue();
 }

@@ -2,17 +2,20 @@
 #include "../../Headers/models/Artista.h"
 #include "../../Headers/exceptions/InvalidDataException.h"
 #include "../../Headers/views/Utils.h"
-#include <cctype>
+
+
+std::vector<Album> Album::listaAlbuns = {};
+int Album::idproximoAlbum = 1;
 
 // Construtor
 Album::Album(int idAlbum, Artista* artistaPtr, const std::string& titulo, int ano, float preco, const std::string& formato, float novoRating) {
     this->idAlbum = idAlbum;
     this->artista = artistaPtr;
-    this->titulo = titulo;
-    this->ano = ano;
-    this->preco = preco;
-    this->formato = formato;
-    this->rating = novoRating;
+    set_titulo(titulo);
+    set_ano(ano);
+    set_preco(preco);
+    set_formato(formato);
+    set_rating(novoRating);
 }
 
 // Implementação dos Getters
@@ -56,7 +59,7 @@ void Album::set_artista(Artista* novoArtista) {
     if (artista == nullptr) {
         throw InvalidDataException("Erro: O álbum necessita de um artista válido associado!");
     }
-    this->artista = artista;
+    this->artista = novoArtista;
 }
 
 void Album::set_titulo(const std::string &titulo) {
@@ -101,5 +104,48 @@ void Album::set_formato(const std:: string &formato) {
         this->formato = "Digital";
     } else {
         throw InvalidDataException("Erro: Formato inválido! Escolha apenas entre 'Vinil', 'CD' ou 'Digital'.");
+    }
+}
+//------------------------_MANAGER CATALOGO----------------------------------------//
+void Album::adicionarAlbum(const std::string& titulo, int id_artista, int ano, float preco, const std::string& formato) {
+    Artista* artistaEncontrado = Artista::obterArtistaPorId(id_artista);
+
+    if (artistaEncontrado != nullptr) {
+        Album novoAlbum(idproximoAlbum, artistaEncontrado, titulo, ano, preco, formato, 0.0f);
+        listaAlbuns.push_back(novoAlbum);
+        idproximoAlbum++;
+    } else {
+        throw std::invalid_argument("Erro: Álbum sem artista associado.");
+    }
+}
+
+bool Album::removerAlbum(int idParaApagar) {
+    for (size_t i = 0; i < listaAlbuns.size(); i++) {
+        if (listaAlbuns[i].id_album() == idParaApagar) {
+            listaAlbuns.erase(listaAlbuns.begin() + i);
+            return true;
+        }
+    }
+    return false;
+}
+
+Album* Album::obterAlbumPorId(int id) {
+    for (size_t i = 0; i < listaAlbuns.size(); i++) {
+        if (listaAlbuns[i].id_album() == id) {
+            return &listaAlbuns[i];
+        }
+    }
+    return nullptr;
+}
+
+const std::vector<Album>& Album::obterAlbuns() {
+    return listaAlbuns;
+}
+
+void Album::limparAlbunsPorArtista(int idArtistaParaApagar) {
+    for (int i = static_cast<int>(listaAlbuns.size()) - 1; i >= 0; i--) {
+        if (listaAlbuns[i].get_artista() != nullptr && listaAlbuns[i].get_artista()->get_id_artista() == idArtistaParaApagar) {
+            listaAlbuns.erase(listaAlbuns.begin() + i);
+        }
     }
 }

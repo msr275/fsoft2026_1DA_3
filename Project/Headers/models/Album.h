@@ -2,6 +2,7 @@
 #define FSOFT2026_1DA_3_ALBUM_H
 
 #include <string>
+#include <vector>
 
 
 class Artista;
@@ -15,6 +16,9 @@ private:
     float preco;
     std::string formato;
     float rating;
+
+    static std::vector<Album> listaAlbuns;
+    static int idproximoAlbum;
 
 public:
     // Construtor
@@ -37,6 +41,13 @@ public:
     void set_preco(float preco);
     void set_rating(float novoRating);
     void set_formato(const std:: string &formato);
+
+    //--------------------------------MANAGER CATALOGO--------------------_//
+    static void adicionarAlbum(const std::string& titulo, int id_artista, int ano, float preco, const std::string& formato);
+    static bool removerAlbum(int idParaApagar);
+    static Album* obterAlbumPorId(int id);
+    static const std::vector<Album>& obterAlbuns();
+    static void limparAlbunsPorArtista(int idArtistaParaApagar);
 };
 
 #endif // FSOFT2026_1DA_3_ALBUM_H

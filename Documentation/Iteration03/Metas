@@ -1,4 +1,7 @@
--Separar manager catálogo por Artista e Álbuns - mais ou menos feito
--Colocar condiçoes para adição de album e artista - feito
--Fazer Classe pesquisa
--Tirar lógica do ficheiro Menu - mais ou menos feito
+-Separar manager catálogo por Artista e Álbuns ------------ feito
+-Colocar condiçoes para adição de album e artista --------feito
+-Fazer Classe pesquisa------------- feito
+-Tirar lógica do ficheiro Menu ---------  feito
+-aparecer [INFO] na parte do rating quando se  pergunta qual álbum quer se avaliar----------- feito
+- melhorar lógica de quando nao se escreve nada num campo(exemplo: nome de artista)--------- feito
+- quando se clica enter em alguma pesquisa, aparecem todos os albuns(bug)----- feito
