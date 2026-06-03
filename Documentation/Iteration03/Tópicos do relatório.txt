@@ -1,5 +1,5 @@
--caracteristicas
--historias do utilizador
+-caracteristicas (FEITO)
+-historias do utilizador (FEITO)
 -modelo de dominio
 -diagrama de classes (verificar se necessario alterar o que ja fizemos)
 -diagrama de classes para vies, controllers....
