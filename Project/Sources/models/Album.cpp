@@ -2,7 +2,7 @@
 #include "../../Headers/models/Artista.h"
 #include "../../Headers/exceptions/InvalidDataException.h"
 #include "../../Headers/views/Utils.h"
-
+#include <stdexcept>
 
 std::vector<Album> Album::listaAlbuns = {};
 int Album::idproximoAlbum = 1;

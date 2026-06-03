@@ -286,7 +286,7 @@ void showCustomerMenu() {
 }
 
 void runMainMenu() {
-    DataManager storage("/Users/rodrigosantos/leti/fsoft2026_1DA_3/data");
+    DataManager storage("data");
     storage.carregarDados();
 
     int choice = -1;
