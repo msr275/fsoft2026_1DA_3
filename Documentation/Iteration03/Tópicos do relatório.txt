@@ -1,6 +1,6 @@
 -caracteristicas (FEITO)
 -historias do utilizador (FEITO)
--modelo de dominio
+-modelo de dominio (FEITO)
 -diagrama de classes (verificar se necessario alterar o que ja fizemos)
 -diagrama de classes para vies, controllers....
 -listar todos os casos de uso
