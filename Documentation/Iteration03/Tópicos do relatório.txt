@@ -2,7 +2,7 @@
 -historias do utilizador (FEITO)
 -modelo de dominio (FEITO)
 -diagrama de classes (verificar se necessario alterar o que ja fizemos) (FEITO)
--diagrama de classes para vies, controllers....
+-diagrama de classes para vies, controllers....(FEITO)
 -listar todos os casos de uso (FEITO)
 -user/manager interface
 -implementação(???) (opcional, apenas colocar caso não estejamos apertados)
