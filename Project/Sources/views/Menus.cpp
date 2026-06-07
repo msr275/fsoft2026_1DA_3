@@ -88,7 +88,7 @@ void showAdminMenu() {
                 continue;
             }
 
-            ano = getSafeInt("Ano de Lançamento (1700-2026): ", 1700, 2026);
+            ano = getSafeInt("Ano de Lançamento (1900-2026): ", 1900, 2026);
 
             std::string precoInput;
             float preco = -1;
@@ -112,7 +112,7 @@ void showAdminMenu() {
             try {
                 Album::adicionarAlbum(titulo, idArtistaEncontrado, ano, preco, formato);
                 std::cout << "\n[SUCESSO] Álbum '" << titulo << "' adicionado com sucesso!\n";
-            } catch (const std::invalid_argument& e) {
+            } catch (const std::invalid_argument& e) {   //VERIFICAR SE FICA "invalid_argument" OU "exception"
                 std::cout << "\n" << e.what() << "\n";
             }
             pressEnterToContinue();

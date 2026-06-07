@@ -36,6 +36,7 @@ add_executable(fsoft2026_1DA_3
         Project/Sources/exceptions/InvalidDataException.cpp
         Project/Headers/controllers/Pesquisa.h
         Project/Sources/controllers/Pesquisa.cpp
+        Project/Sources/views/Venda.cpp
 )
 
 target_include_directories(fsoft2026_1DA_3 PUBLIC Project/Headers)

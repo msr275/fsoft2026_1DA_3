@@ -1,4 +1,4 @@
-#include "Venda.h"
+#include "../../Headers/models/Venda.h"
 #include <iostream>
 
 Venda::Venda(int id, const std::string& dataAtual, const Carrinho& cart)
