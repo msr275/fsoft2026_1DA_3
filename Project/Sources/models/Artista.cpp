@@ -1,7 +1,7 @@
 #include "../../Headers/models/Artista.h"
 #include "../../Headers/models/Album.h"
 #include "../../Headers/exceptions/InvalidDataException.h"
-#include "../Headers/views/Utils.h"
+#include "../../Headers/views/Utils.h"
 
 std::vector<Artista> Artista::listaArtistas = {};
 int Artista::idproximoArtista = 1;

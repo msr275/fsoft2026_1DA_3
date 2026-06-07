@@ -56,7 +56,7 @@ float Album::rating1() const {
 
 //Implementação dos Setters
 void Album::set_artista(Artista* novoArtista) {
-    if (artista == nullptr) {
+    if (artista == nullptr) {                       //VERIFICAR SE É "artista" OU "novoArtista
         throw InvalidDataException("Erro: O álbum necessita de um artista válido associado!");
     }
     this->artista = novoArtista;
