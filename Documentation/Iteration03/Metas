@@ -5,3 +5,4 @@
 -aparecer [INFO] na parte do rating quando se  pergunta qual álbum quer se avaliar----------- feito
 - melhorar lógica de quando nao se escreve nada num campo(exemplo: nome de artista)--------- feito
 - quando se clica enter em alguma pesquisa, aparecem todos os albuns(bug)----- feito
+- ter o nome do artista na lista de albúns ---- falta
