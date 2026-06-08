@@ -221,7 +221,6 @@ void showCustomerMenu() {
                 std::string termo;
 
                 if (subChoice == 1) {
-                    // 💡 Força a digitar algo válido antes de pesquisar
                     termo = antiCamposVazios("Digite o nome do Álbum (ou parte): ");
                     resultados = Pesquisa::pesquisarPorNomedeAlbum(termo);
 
@@ -230,7 +229,6 @@ void showCustomerMenu() {
                     pressEnterToContinue();
                 }
                 else if (subChoice == 2) {
-                    // 💡 Força a digitar algo válido antes de pesquisar
                     termo = antiCamposVazios("Digite o nome do Artista (ou parte): ");
                     resultados = Pesquisa::pesquisaPorNomedeArtista(termo);
 
@@ -239,7 +237,6 @@ void showCustomerMenu() {
                     pressEnterToContinue();
                 }
                 else if (subChoice == 3) {
-                    // 💡 Força a digitar algo válido antes de pesquisar
                     termo = antiCamposVazios("Digite o Género: ");
                     resultados = Pesquisa::pesquisarPorGenero(termo);
 
@@ -286,7 +283,7 @@ void showCustomerMenu() {
 }
 
 void runMainMenu() {
-    DataManager storage("data");
+    DataManager storage(".");
     storage.carregarDados();
 
     int choice = -1;
