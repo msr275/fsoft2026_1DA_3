@@ -106,8 +106,9 @@ TEST_F(CarrinhoFixture, ValidarOperacoesECalculoTotal) {
 
 TEST(IntegracaoPersistenciaTest, CarregarDadosDoSistema) {
 
+    DataManager dm("data");
     EXPECT_NO_THROW({
-        DataManager::getInstance().carregarDados();
+        dm.carregarDados()  ;
     });
 }
 
@@ -117,8 +118,8 @@ TEST(IntegracaoPersistenciaTest, CarregarDadosDoSistema) {
 TEST(IntegracaoPesquisaTest, MotoresDeBusca) {
 
     EXPECT_NO_THROW({
-        controllerPesquisa.pesquisarPorGenero("Rock");
-        controllerPesquisa.pesquisaPorArtista("Kendrick Lamar");
+        Pesquisa::pesquisarPorGenero(("Rock"));
+        Pesquisa::pesquisaPorNomedeArtista(("Kendrick Lamar"));
     });
 }
 
@@ -130,12 +131,16 @@ TEST(IntegracaoRegrasNegocioTest, FluxosEfetivos) {
     Artista artistaFake(1, "Pink Floyd", "UK" , "Rock");
     Album albumTeste(1, &artistaFake, "Wish You Were Here", 1975 , 29.99f, "Vinil");
 
-    Rating ratingTeste;
     EXPECT_NO_THROW({
-        ratingTeste.adicionarNota(5);
+        Rating ratingTeste(1, 5);
+        EXPECT_EQ(ratingTeste.getPontuacao(), 5);
     });
 
+    Carrinho carrinhoDeTeste;
+    carrinhoDeTeste.adicionarAlbum((&albumTeste));
+
     EXPECT_NO_THROW({
-        Venda novaVenda(1, "2026-06-09", 29.99f);
+        Venda novaVenda(1, "2026-06-09", carrinhoDeTeste);
+        EXPECT_EQ(novaVenda.getIdVenda(), 1);
     });
 }
