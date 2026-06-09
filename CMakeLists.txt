@@ -67,6 +67,10 @@ add_executable(runTests
         Project/Sources/models/Artista.cpp
         Project/Sources/models/Carrinho.cpp
         Project/Sources/models/Utils.cpp
+        Project/Sources/models/Rating.cpp
+        Project/Sources/views/Venda.cpp
+        Project/Sources/controllers/Pesquisa.cpp
+        Project/Sources/persistence/DataManager.cpp
         Project/Sources/exceptions/InvalidDataException.cpp
 )
 
