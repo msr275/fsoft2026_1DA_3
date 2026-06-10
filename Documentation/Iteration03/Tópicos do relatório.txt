@@ -4,6 +4,6 @@
 -diagrama de classes (verificar se necessario alterar o que ja fizemos) (FEITO)
 -diagrama de classes para vies, controllers....(FEITO)
 -listar todos os casos de uso (FEITO)
--user/manager interface
+-user/manager interface (FEITO)
 -implementação(???) (opcional, apenas colocar caso não estejamos apertados)
 -testagem
