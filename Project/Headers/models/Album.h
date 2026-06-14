@@ -42,7 +42,7 @@ public:
     void set_rating(float novoRating);
     void set_formato(const std:: string &formato);
 
-    //--------------------------------MANAGER CATALOGO--------------------_//
+    //--------------------------------MANAGER CATALOGO ANTIGO--------------------_//
     static void adicionarAlbum(const std::string& titulo, int id_artista, int ano, float preco, const std::string& formato);
     static bool removerAlbum(int idParaApagar);
     static Album* obterAlbumPorId(int id);

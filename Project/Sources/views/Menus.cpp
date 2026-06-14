@@ -17,8 +17,21 @@ void exibirListaAlbuns(const std::vector<Album>& albuns) {
     }
     std::cout << "\n================= ÁLBUNS ENCONTRADOS =================\n";
     for (size_t i = 0; i < albuns.size(); i++) {
+
+        std::string nomeArtista = "Desconhecido";
+        int idArt = albuns[i].id_artista();
+
+        const auto& artistas = Artista::obterArtistas();
+        for (size_t j = 0; j < artistas.size(); j++) {
+            if (artistas[j].get_id_artista() == idArt) {
+                nomeArtista = artistas[j].get_nome();
+                break;
+            }
+        }
+
         std::cout << "ID: " << albuns[i].id_album()
                   << " | Título: " << albuns[i].titulo1()
+                  << " | Artista: " << nomeArtista
                   << " | Preço: " << albuns[i].preco1() << " EUR"
                   << " | Rating: " << (albuns[i].rating1() == 0 ? "Sem nota" : std::to_string(albuns[i].rating1()).substr(0,3) + "/5*") << "\n";
     }
@@ -112,7 +125,7 @@ void showAdminMenu() {
             try {
                 Album::adicionarAlbum(titulo, idArtistaEncontrado, ano, preco, formato);
                 std::cout << "\n[SUCESSO] Álbum '" << titulo << "' adicionado com sucesso!\n";
-            } catch (const std::invalid_argument& e) {   //VERIFICAR SE FICA "invalid_argument" OU "exception"
+            } catch (const std::invalid_argument& e) {
                 std::cout << "\n" << e.what() << "\n";
             }
             pressEnterToContinue();
@@ -283,7 +296,7 @@ void showCustomerMenu() {
 }
 
 void runMainMenu() {
-    DataManager storage(".");
+    DataManager storage("data");
     storage.carregarDados();
 
     int choice = -1;

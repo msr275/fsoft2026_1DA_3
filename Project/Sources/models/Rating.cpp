@@ -1,6 +1,6 @@
 #include "../../Headers/models/Rating.h"
 
-int Rating::contadorIds = 1;
+int Rating::contadorIds = 1;//incialização de contador
 
 Rating::Rating(int idA, int pont) : idRating(contadorIds++), idAlbum(idA) {
     setPontuacao(pont);
