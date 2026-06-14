@@ -62,7 +62,6 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(runTests
-        ProjectTester/testes_dominio.cpp
         Project/Sources/models/Album.cpp
         Project/Sources/models/Artista.cpp
         Project/Sources/models/Carrinho.cpp
@@ -72,6 +71,7 @@ add_executable(runTests
         Project/Sources/controllers/Pesquisa.cpp
         Project/Sources/persistence/DataManager.cpp
         Project/Sources/exceptions/InvalidDataException.cpp
+        ProjectTester/main_test.cpp
 )
 
 target_include_directories(runTests PUBLIC Project/Headers)
