@@ -1,10 +1,10 @@
 #include "../../Headers/controllers/Pesquisa.h"
 #include "../../Headers/models/Album.h"
 #include "../../Headers/models/Artista.h"
-
+//RECEBE STRING DO ESTILO/GÉNERO E VAI PERCORRER A LISTA DE ALBUNS E DEVOLVE UM VETOR DE ÁLBUNS QUE PERTENÇAM A ESSE GÉNERO
 std::vector<Album> Pesquisa::pesquisarPorGenero(const std::string& generoProcurado) {
     std::vector<Album> resultados;
-    // Importa a lista real e estática guardada na classe Album
+
     const std::vector<Album>& listaAlbuns = Album::obterAlbuns();
 
     for (size_t i = 0; i < listaAlbuns.size(); i++) {
@@ -15,6 +15,7 @@ std::vector<Album> Pesquisa::pesquisarPorGenero(const std::string& generoProcura
     return resultados;
 }
 
+//RECEBE INT DO ANO DE LANÇAMENTO DO ÁLBUM E VAI PERCORRER A LISTA DE ALBUNS E DEVOLVE UM VETOR DE ÁLBUNS QUE SEJAM DESSE ANO
 std::vector<Album> Pesquisa::pesquisaPorAno(int anoProcurado) {
     std::vector<Album> resultados;
     const std::vector<Album>& listaAlbuns = Album::obterAlbuns();
@@ -27,6 +28,7 @@ std::vector<Album> Pesquisa::pesquisaPorAno(int anoProcurado) {
     return resultados;
 }
 
+//RECEBE STRING DO NOME DE ÁLBUM E VAI PERCORRER A LISTA DE ALBUNS E DEVOLVE UM VETOR DE ÁLBUNS QUE TENHAM UM NOME PARECIDO
 std::vector<Album> Pesquisa::pesquisarPorNomedeAlbum(const std::string& nomeProcurado) {
     std::vector<Album> resultados;
     const std::vector<Album>& listaAlbuns = Album::obterAlbuns();
@@ -40,6 +42,7 @@ std::vector<Album> Pesquisa::pesquisarPorNomedeAlbum(const std::string& nomeProc
     return resultados;
 }
 
+//RECEBE STRING DO NOME DO ARTISTA E VAI PERCORRER A LISTA DE ALBUNS E DEVOLVE UM VETOR DE ÁLBUNS QUE PERTENÇAM A ESSE ARTISTA
 std::vector<Album> Pesquisa::pesquisaPorNomedeArtista(const std::string& artistaProcurado) {
     std::vector<Album> resultados;
     const std::vector<Album>& listaAlbuns = Album::obterAlbuns();

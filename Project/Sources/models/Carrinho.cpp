@@ -12,8 +12,8 @@ void Carrinho::adicionarAlbum(Album* album) {
 
 // Remove o álbum do carrinho
 bool Carrinho::removerAlbum(int idAlbum) {
-    for (auto it = itens.begin(); it != itens.end(); ++it) {
-        if ((*it)->id_album() == idAlbum) {
+    for (auto it = itens.begin(); it != itens.end(); ++it) { //auto ajusta o tipo de dados consoante o seu uso
+        if ((*it)->id_album() == idAlbum) { // *it vai aceder ao apontador do álbum atual
             itens.erase(it);
             return true;
         }

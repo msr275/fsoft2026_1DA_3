@@ -28,13 +28,13 @@ add_executable(fsoft2026_1DA_3
         Project/Sources/views/Menus.cpp
 
         Project/Headers/views/Utils.h
-        Project/Sources/models/Utils.cpp
+        Project/Sources/views/Utils.cpp
 
         Project/Headers/models/Rating.h
         Project/Sources/models/Rating.cpp
 
         Project/Headers/models/Venda.h
-        Project/Sources/views/Venda.cpp
+        Project/Sources/models/Venda.cpp
 
         Project/Headers/controllers/Pesquisa.h
         Project/Sources/controllers/Pesquisa.cpp
@@ -66,9 +66,9 @@ add_executable(runTests
         Project/Sources/models/Album.cpp
         Project/Sources/models/Artista.cpp
         Project/Sources/models/Carrinho.cpp
-        Project/Sources/models/Utils.cpp
+        Project/Sources/views/Utils.cpp
         Project/Sources/models/Rating.cpp
-        Project/Sources/views/Venda.cpp
+        Project/Sources/models/Venda.cpp
         Project/Sources/controllers/Pesquisa.cpp
         Project/Sources/persistence/DataManager.cpp
         Project/Sources/exceptions/InvalidDataException.cpp

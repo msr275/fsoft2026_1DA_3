@@ -6,16 +6,19 @@
 #include <sstream>
 #include <sys/stat.h>
 #include <cerrno>
-
+//Construtor com caminhos definidos para cada um dos csv
 DataManager::DataManager(const std::string& dataDir) : m_dataDir(dataDir) {
     m_artistasFile = m_dataDir + "/artistas.csv";
     m_albunsFile = m_dataDir + "/albuns.csv";
 }
 
+//garante q vai existir pasta "data" para n dar erro ao gravar
 void DataManager::assegurarDiretorio() {
 #ifdef _WIN32
+    //Wndows
     if (mkdir(m_dataDir.c_str()) == 0 || errno == EEXIST) {
 #else
+    //linux/mac
     if (mkdir(m_dataDir.c_str(), 0777) == 0 || errno == EEXIST) {
 #endif
     } else {
