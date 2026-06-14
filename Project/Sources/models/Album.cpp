@@ -10,7 +10,7 @@ int Album::idproximoAlbum = 1;
 // Construtor
 Album::Album(int idAlbum, Artista* artistaPtr, const std::string& titulo, int ano, float preco, const std::string& formato, float novoRating) {
     this->idAlbum = idAlbum;
-    this->artista = artistaPtr;
+    set_artista(artistaPtr);
     set_titulo(titulo);
     set_ano(ano);
     set_preco(preco);
@@ -18,7 +18,7 @@ Album::Album(int idAlbum, Artista* artistaPtr, const std::string& titulo, int an
     set_rating(novoRating);
 }
 
-// Implementação dos Getters
+//----------------------------IMPLEMENTAÇÃO DE GETTERS---------------------------//
 int Album::id_album() const {
     return idAlbum;
 }
@@ -53,10 +53,9 @@ std::string Album::formato1() const {
 float Album::rating1() const {
     return rating;
 }
-
-//Implementação dos Setters
+//-----------------------------IMPLEMENTAÇÃO DE SETTERS--------------------------//
 void Album::set_artista(Artista* novoArtista) {
-    if (artista == nullptr) {                       //VERIFICAR SE É "artista" OU "novoArtista
+    if (novoArtista == nullptr) {
         throw InvalidDataException("Erro: O álbum necessita de um artista válido associado!");
     }
     this->artista = novoArtista;
@@ -71,8 +70,8 @@ void Album::set_titulo(const std::string &titulo) {
 }
 
 void Album::set_ano(int ano) {
-    if (ano < 1900 || ano > 2026) {
-        throw InvalidDataException("Erro: Ano inválido! O ano deve situar-se entre 1900 e 2026.");
+    if (ano < 1700 || ano > 2026) {
+        throw InvalidDataException("Erro: Ano inválido! O ano deve situar-se entre 1700 e 2026.");
     }
     this->ano = ano;
 }
@@ -85,9 +84,11 @@ void Album::set_preco(float preco) {
 }
 
 void Album::set_rating(float novoRating) {
-    rating = novoRating;
+    if (novoRating < 0.0f || novoRating > 5.0f) {
+        throw InvalidDataException("Erro: O rating deve ser um valor entre 0 e 5!");
+    }
+    this->rating = novoRating;
 }
-
 void Album::set_formato(const std:: string &formato) {
     std::string formatoLimpo = limparEspacos(formato);
 
@@ -106,7 +107,9 @@ void Album::set_formato(const std:: string &formato) {
         throw InvalidDataException("Erro: Formato inválido! Escolha apenas entre 'Vinil', 'CD' ou 'Digital'.");
     }
 }
-//------------------------_MANAGER CATALOGO----------------------------------------//
+//------------------------_MANAGER CATALOGO ANTIGO----------------------------------------//
+
+//recebe os parâmetros do álbum, se houver artista associado realmente, ele vai adicionar um álbum ao vetor de álbuns e incrementar os ids. Se n houver artista associado, o programa dá erro e aavisa o user.
 void Album::adicionarAlbum(const std::string& titulo, int id_artista, int ano, float preco, const std::string& formato) {
     Artista* artistaEncontrado = Artista::obterArtistaPorId(id_artista);
 
@@ -118,7 +121,7 @@ void Album::adicionarAlbum(const std::string& titulo, int id_artista, int ano, f
         throw std::invalid_argument("Erro: Álbum sem artista associado.");
     }
 }
-
+// pega no id do álbum e percorre a lista de álbuns, se o encontrar, elimina-o do vetor.
 bool Album::removerAlbum(int idParaApagar) {
     for (size_t i = 0; i < listaAlbuns.size(); i++) {
         if (listaAlbuns[i].id_album() == idParaApagar) {
@@ -128,7 +131,7 @@ bool Album::removerAlbum(int idParaApagar) {
     }
     return false;
 }
-
+// fornecer id de álbum, percorrer o vetor à sua procura e devolver o seu endereço. Se n encontrar, não retorna nada.
 Album* Album::obterAlbumPorId(int id) {
     for (size_t i = 0; i < listaAlbuns.size(); i++) {
         if (listaAlbuns[i].id_album() == id) {
@@ -142,10 +145,13 @@ const std::vector<Album>& Album::obterAlbuns() {
     return listaAlbuns;
 }
 
+//Usado no caso de eliminarmos um artista, pois temos de eliminar todos os seus álbuns
 void Album::limparAlbunsPorArtista(int idArtistaParaApagar) {
-    for (int i = static_cast<int>(listaAlbuns.size()) - 1; i >= 0; i--) {
-        if (listaAlbuns[i].get_artista() != nullptr && listaAlbuns[i].get_artista()->get_id_artista() == idArtistaParaApagar) {
+    for (int i = static_cast<int>(listaAlbuns.size()) - 1; i >= 0; i--) { // static_cast<int> converte o tamanho do vetor size_t ----> int
+        if (listaAlbuns[i].get_artista() != nullptr && listaAlbuns[i].get_artista()->get_id_artista() == idArtistaParaApagar) {// garante q álbum tem artista associado e se o seu id é oq realmente queremos apagar.
             listaAlbuns.erase(listaAlbuns.begin() + i);
         }
     }
 }
+//loop começa do fim para o ínicio pois quando eliminamos um item com erase, o vetor diminui e os seus elementos mudam de poisção
+// se não fizessemos assim, acabavamos por tentar aceder a elementos q já não vão existir.

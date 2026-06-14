@@ -11,10 +11,12 @@ private:
     float valorTotal;
 
 public:
-    Venda(int id, const std::string& dataAtual, const Carrinho& cart);
+    Venda(int id, const std::string& dataAtual, const Carrinho& cart);//construtor
+    //GETTERS
     int getIdVenda() const;
     std::string getData() const;
     float getValorTotal() const;
+    //Imprime fatura
     void exibirRecibo() const;
 };
 #endif

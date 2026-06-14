@@ -14,7 +14,7 @@ Artista::Artista(int idArtista, const std::string& nome, const std::string& pais
     set_genero(genero);
 }
 
-// Implementação dos Getters
+//-------------------------------IMPLEMENTAÇÃO DE GETTERS------------------//
 int Artista::get_id_artista() const {
     return idArtista;
 }
@@ -31,7 +31,7 @@ std::string Artista::get_genero() const {
     return genero;
 }
 
-// Implementação dos Setters
+//----------------------------IMPLEMENTAÇÃO DE SETTERS-------------------------//
 void Artista::set_nome(const std::string& nome) {
     std::string nomeValido = limparEspacos(nome);
     if (nomeValido.empty()) {
@@ -64,6 +64,7 @@ void Artista::adicionarArtista(const std::string& nome, const std::string& pais,
     idproximoArtista++;
 }
 
+//chama função de classe Álbum para limpar todos os álbuns deste artista e depois limpa-se o artista do vetor de artistas
 bool Artista::removerArtista(int idParaApagar) {
     Album::limparAlbunsPorArtista(idParaApagar);
     for (size_t i = 0; i < listaArtistas.size(); i++) {
@@ -79,6 +80,7 @@ const std::vector<Artista>& Artista::obterArtistas() {
     return listaArtistas;
 }
 
+//fornecer id de um artista e receber o seu endereço
 Artista* Artista::obterArtistaPorId(int id) {
     for (size_t i = 0; i < listaArtistas.size(); i++) {
         if (listaArtistas[i].get_id_artista() == id) {

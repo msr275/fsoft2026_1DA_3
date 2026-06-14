@@ -6,14 +6,14 @@
 
 class Carrinho {
 private:
-    std::vector<Album*> itens;
+    std::vector<Album*> itens;// usamos apontador para n duplicarmos por acaso um álbum
 public:
-    Carrinho();
+    Carrinho();//construtor
     void adicionarAlbum(Album* album);
     bool removerAlbum(int idAlbum);
     float calcularTotal() const;
     void limparCarrinho();
-    std::vector<Album*> getItens() const;
+    std::vector<Album*> getItens() const;//devolve lista de álbuns q foram adicionados ao carrinho
 };
 
 #endif //FSOFT2026_1DA_3_CARRINHO_H
